@@ -4,7 +4,6 @@ public class Subject {
 
 	private Integer subId;
 	private String subName;
-	private Integer studId;
 	private Integer classNo;
 	
 	public Integer getClassNo() {
@@ -12,12 +11,6 @@ public class Subject {
 	}
 	public void setClassNo(Integer classNo) {
 		this.classNo = classNo;
-	}
-	public Integer getStudId() {
-		return studId;
-	}
-	public void setStudId(Integer studId) {
-		this.studId = studId;
 	}
 	public Integer getSubId() {
 		return subId;

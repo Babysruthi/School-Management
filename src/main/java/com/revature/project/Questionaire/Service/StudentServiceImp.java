@@ -63,7 +63,10 @@ public class StudentServiceImp implements StudentService
 	{
 		studentDaoImp.addAnswer();
 	}
-	
+	public void takeQuiz() throws Exception
+	{
+		studentDaoImp.takeQuiz();
+	}
 	public void result() throws Exception
 	{
 		studentDaoImp.result();

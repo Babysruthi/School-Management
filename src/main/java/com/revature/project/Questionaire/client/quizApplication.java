@@ -25,7 +25,7 @@ public class quizApplication {
 		boolean s=true;
 		while(s)
 		{
-			System.out.println("\n1 Add Quiz\n2 Add Question\n3 Add Answer\n4 Result\n5 Back to main");
+			System.out.println("\n1 Add Quiz\n2 Add Question\n3 Add Answer\n4 To takeQuiz\n5 Result\n6 Back to main");
 			int teacherChoice=scanner.nextInt();
 			switch(teacherChoice)
 			{
@@ -39,10 +39,13 @@ public class quizApplication {
 					scontroller.addAnswer();
 					break;
 				case 4:
+					scontroller.takeQuiz();
+					break;
+				case 5:
 					scontroller.result();
 					break;
 					
-				case 5:
+				case 6:
 					System.out.println("Back to Main Application!!");
 					s=false;
 					break;

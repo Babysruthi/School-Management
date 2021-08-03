@@ -25,14 +25,15 @@ public class SubjectApplication {
 			{
 				case 1:
 				{
+					System.out.println("Enter id,classNo,subName");
 					int subjectId=scanner.nextInt();
-					int studentId=scanner.nextInt();
+					int classNo=scanner.nextInt();
 					scanner.nextLine();
 					String subName=scanner.nextLine();;
 			
 					subject.setSubId(subjectId);
 					subject.setSubName(subName);
-					subject.setStudId(studentId);
+					subject.setClassNo(classNo);
 					
 					scontroller.addSubject(subject);
 		 

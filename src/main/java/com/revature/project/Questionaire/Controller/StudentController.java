@@ -62,6 +62,11 @@ public class StudentController
 	{
 		studentService.addAnswer();
 	}
+	public void takeQuiz() throws Exception
+	{
+		studentService.takeQuiz();
+	}
+	
 	public void result() throws Exception
 	{
 		studentService.result();
