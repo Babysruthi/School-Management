@@ -1,9 +1,11 @@
 package com.revature.project.exception;
 
-public class InvalidException extends Exception{
-	public InvalidException(String msg)
-	{
-		super(msg);
+import com.revature.project.Questionaire.client.MainApplication;
+
+public class InvalidException extends Exception {
+	public InvalidException(String message) {
+		super(message);
+
 	}
 
 }

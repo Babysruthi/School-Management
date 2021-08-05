@@ -1,0 +1,4 @@
+2021-08-05 19:45:49 INFO  class:42 - In MainApplication -> For StudentDetails
+2021-08-05 19:45:56 INFO  class:65 - In MainApplication -> LogOut
+2021-08-05 20:13:30 INFO  class:42 - In MainApplication -> For StudentDetails
+2021-08-05 20:13:32 INFO  class:58 - In studentApplication -> Delete Student
