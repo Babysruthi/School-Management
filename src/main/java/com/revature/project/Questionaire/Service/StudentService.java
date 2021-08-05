@@ -20,6 +20,8 @@ public interface StudentService
 	
 	public void addQuiz() throws Exception;
 	public void deleteQuiz() throws Exception;
+	public void listQuiz() throws Exception;
+	
 	
 	public void addQuestion() throws Exception;
 	public void addAnswer() throws Exception;

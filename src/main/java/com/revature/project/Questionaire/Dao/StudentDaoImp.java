@@ -13,10 +13,11 @@ import com.revature.project.Questionaire.Quiz;
 import com.revature.project.Questionaire.Student;
 import com.revature.project.Questionaire.Subject;
 import com.revature.project.Questionaire.DBUtil.DBUtil;
+import com.revature.project.exception.InvalidException;
 
 public class StudentDaoImp implements StudentDao
 {
-	
+	int subId=0;
 	Scanner scanner=new Scanner(System.in);
 public int checkTeacher(int teacherId,int teacherPass)throws Exception
 	{
@@ -24,25 +25,35 @@ public int checkTeacher(int teacherId,int teacherPass)throws Exception
 	Statement st = con.createStatement();
 	String query = ("select * from teacher");
 	int id1=0,pass1=0;
-	int subId=0;
+	int flag=0;
 	ResultSet rs = st.executeQuery(query);
-	if(rs.next()) 
+	while(rs.next()) 
 	{ 
 	 id1= rs.getInt("id"); 
 	 pass1 = rs.getInt("pass");
 	 subId=rs.getInt("subId");
 
+	 	if((teacherId==id1)&&(teacherPass==pass1))
+	 	{
+	 		flag=1;
+	 	}
+	 	
 	}
-	if((teacherId==id1)&&(teacherPass==pass1))
+	if(flag==1)
 	{
-		System.out.println("Login success..");
+		String sub="";
+		ResultSet resultSet = st.executeQuery("select s.name from subject s join teacher t on s.id=t.subId where t.id="+teacherId);
+		while(resultSet.next())
+		{
+			sub=resultSet.getString(1);
+		}
+		System.out.println(sub);
 	}
 	else
 	{
-		System.out.println("Enter valid id or pass!!");
-		System.exit(0);
+		throw new InvalidException("Invalid user or pass!");
+		
 	}
-	
 	
 	return subId;
 	}
@@ -55,8 +66,11 @@ public void addStudent(Student student) throws Exception {
 			pst.setString(4, student.getStandard());
 			pst.setString(5, student.getAddress());
 			pst.setInt(6, student.getClassNo());
-			pst.execute();
-			System.out.println("data inserted..");
+			int result=pst.executeUpdate();
+			if(result>0)
+			System.out.println("Student added..");
+			else
+				throw new InvalidException("Enter correct details!..Error..check datatypes,duplicates");
 
 	}
 
@@ -64,8 +78,13 @@ public void deleteStudent(Student student) throws Exception{
 	Connection con=DBUtil.getConnection();
 	PreparedStatement pst=con.prepareStatement("delete from student where id=?");
 	pst.setInt(1, student.getRollNo());
-	pst.execute();
+	int result=pst.executeUpdate();
+	if(result>0)
 	System.out.println("Student removed....");
+	else
+
+		throw new InvalidException("Student Id is not present");
+	
 	
 
 }
@@ -79,10 +98,13 @@ public void retrieveStudent(Student student) throws Exception{
 	PreparedStatement pst=con.prepareStatement(query);
 	ResultSet resultSet=pst.executeQuery(query);
 	System.out.println();
+	if(resultSet.next()) {
 	while(resultSet.next())
 	{
 		System.out.println(resultSet.getInt(1)+" "+resultSet.getString(2)+" "+resultSet.getString(3)+" "+resultSet.getString(4)+" "+resultSet.getString(5));
-	}
+	}}
+	else
+		throw new InvalidException("No list of students in this particular classNo "+classNo);
 	
 }
 
@@ -163,8 +185,12 @@ public void addSubject(Subject subject) throws Exception {
 	pst.setInt(1, subject.getSubId());
 	pst.setString(2,subject.getSubName());
 	pst.setInt(3, subject.getClassNo());
-	pst.execute();
+	int result=pst.executeUpdate();
+	if(result>0)
 	System.out.println("Subject added....");
+	else
+		throw new InvalidException("Enter correct details!..Error..check datatypes,duplicates");
+
 
 }
 
@@ -173,22 +199,29 @@ public void removeSubject(Subject subject) throws Exception
 	Connection con=DBUtil.getConnection();
 	PreparedStatement pst=con.prepareStatement("delete from subject where id=?");
 	pst.setInt(1, subject.getSubId());
-	pst.execute();
+	int result=pst.executeUpdate();
+	if(result>0)
 	System.out.println("subject removed....");
+	else
+		throw new InvalidException("Subject Id is not found");
 }
 
 public void listSubject() throws Exception
 {
 	//Subject subject=new Subject();
 	Connection con=DBUtil.getConnection();
+	System.out.print("Enter classNo whose subjects are needed:");
 	int classNo=scanner.nextInt();
 	String query="select name from subject where classNo="+classNo;
 	PreparedStatement pst=con.prepareStatement(query);
 	ResultSet resultSet=pst.executeQuery(query);
+	if(resultSet.next()) {
 	while(resultSet.next())
 	{
 		System.out.println(resultSet.getString(1));
-	}
+	}}
+	else
+		System.out.println("No subjects alloted for the cls "+classNo+" yet");
 }
 
 public void updateSubject() throws Exception
@@ -198,46 +231,76 @@ public void updateSubject() throws Exception
 }
 
 
-
-
-
 public void addQuiz() throws Exception
 {
 	Quiz quiz=new Quiz();
 	Connection con=DBUtil.getConnection();
-	System.out.println("Enter subId:");
-	int subId=scanner.nextInt();
-	System.out.println("Enter quizId:");
-	String quizId=scanner.nextLine();
-	scanner.nextLine();
-	System.out.println("Enter totalQues:");
-	int totalQues=scanner.nextInt();
-	scanner.nextLine();
-	System.out.println("Enter quizname:");
-	String quizName=scanner.nextLine();
+	System.out.print("Enter subId:");
+	int sId=scanner.nextInt();
+	if(sId==subId)
+	{
+		System.out.print("Enter quizId:");
+		String quizId=scanner.nextLine();
+		scanner.nextLine();
+		System.out.print("Enter totalQues:");
+		int totalQues=scanner.nextInt();
+		scanner.nextLine();
+		System.out.print("Enter quizname:");
+		String quizName=scanner.nextLine();
 	
-	PreparedStatement pst=con.prepareStatement("insert into quiz values(?,?,?,?)");
-	pst.setInt(1,subId);
-	pst.setString(2,quizId);
-	pst.setString(3,quizName);
-	pst.setInt(4, totalQues);
-	pst.execute();
-	System.out.println("You are ready to add questions!!!....");
+		PreparedStatement pst=con.prepareStatement("insert into quiz values(?,?,?,?)");
+		pst.setInt(1,sId);
+		pst.setString(2,quizId);
+		pst.setString(3,quizName);
+		pst.setInt(4, totalQues);
+		int result=pst.executeUpdate();
+		if(result>0)
+			System.out.println("You are ready to add questions!!!....");
+		else
+			throw new InvalidException("Query is not executed!! Error...");
+	}
+	else
+	{
+		throw new InvalidException("You can't able to create quiz for subjectId "+sId);
+	}
 }
 public void deleteQuiz() throws Exception
 {
-	Quiz quiz=new Quiz();
+	
 	Connection con=DBUtil.getConnection();
-	System.out.print("Enter id of quiz to delete:");
+	System.out.print("Enter quizId to delete:");
 	String quizId=scanner.nextLine();
-	PreparedStatement pst=con.prepareStatement("delete from subject where id=?");
-	pst.setString(1,quiz.getId() );
-	pst.execute();
+	PreparedStatement pst=con.prepareStatement("delete from quiz where id=?");
+	pst.setString(1,quizId );
+	int result=pst.executeUpdate();
+	if(result>0)
 	System.out.println("quiz with "+quizId+" deleted");
+	else
+		throw new InvalidException("QuizId is not found");
 }
 
-
-
+public void listQuiz() throws Exception
+{
+	Quiz quiz=new Quiz();
+	Connection con=DBUtil.getConnection();
+	System.out.print("Enter subId to list quizzes");
+	int sId=scanner.nextInt();
+	if(sId==subId)
+	{
+		String query="select id,name from quiz where subId="+sId;
+		PreparedStatement pst=con.prepareStatement(query);
+		ResultSet resultSet=pst.executeQuery(query);
+		if(resultSet.next()) {
+		while(resultSet.next())
+		{
+			System.out.println(resultSet.getString(1));
+		}}
+		else
+			System.out.println("No quizes created for this subjectId "+sId+" yet");
+	}
+	else
+		throw new InvalidException("Enter your subjectId correctly..!");
+}
 
 
 
@@ -257,14 +320,18 @@ public void addQuestion() throws Exception
 	pst.setString(1,quizId);
 	pst.setString(2,quesNo);
 	pst.setString(3, ques);
-	pst.execute();
-	System.out.println("Questions are added successfully....");
+	int result=pst.executeUpdate();
+	if(result>0)
+		System.out.println("Questions are added successfully....");
+	else
+		throw new InvalidException("In addQuestion(),Query is not inserted, May be some duplicates..Error!");
 }
 
 public void addAnswer() throws Exception
 {
 	Answer answer=new Answer();
 	Connection con=DBUtil.getConnection();
+	scanner.nextLine();
 	System.out.print("Enter quesNo:");
 	String quesNo=scanner.nextLine();
 	System.out.print("Enter option1:");
@@ -286,8 +353,11 @@ public void addAnswer() throws Exception
 	pst.setString(4,option3);
 	pst.setString(5,option4);
 	pst.setInt(6,crctAns);
-	pst.execute();
-	System.out.println("Added!! Move to next question...");
+	int bool=pst.executeUpdate();
+	if(bool>0)
+		System.out.println("Added!! Move to next question...");
+	else
+		throw new InvalidException("In addAnswers(),Query is not inserted, May be some duplicates..Error!");
 }
 
 

@@ -60,7 +60,10 @@ public class StudentServiceImp implements StudentService
 	{
 		studentDaoImp.deleteQuiz();
 	}
-	
+	public void listQuiz() throws Exception
+	{
+		studentDaoImp.listQuiz();
+	}
 	
 	
 	

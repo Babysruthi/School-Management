@@ -51,7 +51,7 @@ public class MainApplication {
 				}
 				case 3:
 				{
-					System.out.println("You can add/delete quiz for this subject "+ subId);
+					System.out.println("You can add/delete quiz for this subjectId "+ subId);
 					quizApplication quizApp=new quizApplication();
 					quizApp.quiz();
 				}

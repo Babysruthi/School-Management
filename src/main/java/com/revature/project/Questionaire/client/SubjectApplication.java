@@ -39,7 +39,7 @@ public class SubjectApplication {
 					
 					scontroller.addSubject(subject);
 		 
-					System.out.println("Subject is added...");
+					
 					break;
 				}
 			

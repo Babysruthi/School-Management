@@ -60,6 +60,10 @@ public class StudentController
 	{
 		studentService.deleteQuiz();
 	}
+	public void listQuiz() throws Exception
+	{
+		studentService.listQuiz();
+	}
 	
 	
 	public void addQuestion() throws Exception

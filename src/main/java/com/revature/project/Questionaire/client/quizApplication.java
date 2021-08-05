@@ -16,16 +16,10 @@ public class quizApplication {
 		
 		Quiz quiz=new Quiz();
 		
-//		int rollNo=scanner.nextInt();scanner.nextLine();
-//		String name=scanner.nextLine();;
-//		String dob=scanner.nextLine();;
-//		String standard=scanner.nextLine();;
-//		String address=scanner.nextLine();;
-		
 		boolean s=true;
 		while(s)
 		{
-			System.out.println("\n1 Add Quiz\n2 Delete Quiz\n3 Add Question\n4 Add Answer\n5 To takeQuiz\n6 Result\n7 Back to main");
+			System.out.println("\n1 Add Quiz\n2 Delete Quiz\n3 List Quiz for particular subject\n4 Add Question\n5 Add Answer\n6 To takeQuiz\n7 Result\n8 Back to main");
 			int teacherChoice=scanner.nextInt();
 			switch(teacherChoice)
 			{
@@ -36,19 +30,22 @@ public class quizApplication {
 					scontroller.deleteQuiz();
 					break;
 				case 3:
-					scontroller.addQuestion();
+					scontroller.listQuiz();
 					break;
 				case 4:
-					scontroller.addAnswer();
+					scontroller.addQuestion();
 					break;
 				case 5:
-					scontroller.takeQuiz();
+					scontroller.addAnswer();
 					break;
 				case 6:
+					scontroller.takeQuiz();
+					break;
+				case 7:
 					scontroller.result();
 					break;
 					
-				case 7:
+				case 8:
 					System.out.println("Back to Main Application!!");
 					s=false;
 					break;
