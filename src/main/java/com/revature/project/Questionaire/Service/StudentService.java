@@ -10,7 +10,7 @@ public interface StudentService
 	public void retrieveStudent(Student student) throws Exception;
 	public void updateStudent(Student student) throws Exception;
 	
-	//public void checkTeacher(String teacherId,String teacherPass) throws Exception;
+	public int checkTeacher(int teacherId,int teacherPass) throws Exception;
 	
 	public void addSubject(Subject subject) throws Exception;
 	public void removeSubject(Subject subject) throws Exception;
@@ -19,6 +19,8 @@ public interface StudentService
 	
 	
 	public void addQuiz() throws Exception;
+	public void deleteQuiz() throws Exception;
+	
 	public void addQuestion() throws Exception;
 	public void addAnswer() throws Exception;
 	public void takeQuiz() throws Exception;

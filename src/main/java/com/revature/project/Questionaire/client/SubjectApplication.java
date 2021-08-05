@@ -25,10 +25,12 @@ public class SubjectApplication {
 			{
 				case 1:
 				{
-					System.out.println("Enter id,classNo,subName");
+					System.out.println("Enter id:");
 					int subjectId=scanner.nextInt();
+					System.out.println("Enter classNo:");
 					int classNo=scanner.nextInt();
 					scanner.nextLine();
+					System.out.println("Enter subject");
 					String subName=scanner.nextLine();;
 			
 					subject.setSubId(subjectId);
@@ -43,7 +45,7 @@ public class SubjectApplication {
 			
 				case 2:
 				{
-					System.out.println("Enter subject's id to remove");
+					System.out.println("Enter subject's id to remove:");
 					int subjectId=scanner.nextInt();
 					subject.setSubId(subjectId);
 					scontroller.removeSubject(subject);

@@ -18,29 +18,34 @@ public class StudentDaoImp implements StudentDao
 {
 	
 	Scanner scanner=new Scanner(System.in);
-//public void checkTeacher(String teacherId,String teacherPass)throws Exception
-//	{
-//	Connection con=DBUtil.getConnection();
-//	Statement st = con.createStatement();
-//	String query = ("select * from teacherlogin");
-//	String id1=new String();
-//	String pass1=new String();
-//	ResultSet rs = st.executeQuery(query);
-//	if(rs.next()) 
-//	{ 
-//	 id1= rs.getString("id"); 
-//	 pass1 = rs.getString("pass");
-//
-//	}
-//	if(teacherId.equals(id1)&&teacherPass.equals(pass1))
-//	{
-//		System.out.println("Welcome!! Have a Nice Day");
-//	}
-//	else
-//	{
-//		System.out.println("Enter valid id or pass!!");
-//	}
-//	}
+public int checkTeacher(int teacherId,int teacherPass)throws Exception
+	{
+	Connection con=DBUtil.getConnection();
+	Statement st = con.createStatement();
+	String query = ("select * from teacher");
+	int id1=0,pass1=0;
+	int subId=0;
+	ResultSet rs = st.executeQuery(query);
+	if(rs.next()) 
+	{ 
+	 id1= rs.getInt("id"); 
+	 pass1 = rs.getInt("pass");
+	 subId=rs.getInt("subId");
+
+	}
+	if((teacherId==id1)&&(teacherPass==pass1))
+	{
+		System.out.println("Login success..");
+	}
+	else
+	{
+		System.out.println("Enter valid id or pass!!");
+		System.exit(0);
+	}
+	
+	
+	return subId;
+	}
 public void addStudent(Student student) throws Exception {
 			Connection con=DBUtil.getConnection();
 			PreparedStatement pst=con.prepareStatement("insert into student values(?,?,?,?,?,?)");
@@ -68,11 +73,12 @@ public void deleteStudent(Student student) throws Exception{
 public void retrieveStudent(Student student) throws Exception{
 	Connection con=DBUtil.getConnection();
 	System.out.println("List of students are ....");
-	System.out.println("Enter classNo of students needed");
+	System.out.print("Enter classNo of students needed:");
 	int classNo=scanner.nextInt();
 	String query="select * from student where classNo="+classNo;
 	PreparedStatement pst=con.prepareStatement(query);
 	ResultSet resultSet=pst.executeQuery(query);
+	System.out.println();
 	while(resultSet.next())
 	{
 		System.out.println(resultSet.getInt(1)+" "+resultSet.getString(2)+" "+resultSet.getString(3)+" "+resultSet.getString(4)+" "+resultSet.getString(5));
@@ -85,11 +91,11 @@ public void updateStudent(Student student) throws Exception
 	Connection con=DBUtil.getConnection();
 	System.out.println("\nEnter the attribute to update \n1 StudentName\n2 DOB\n3 Standard\n4 Address");
 	int teacherChoice=scanner.nextInt();
-	System.out.println("Enter the student's id to update");
+	System.out.println("Enter the student's id to update:");
 	int id=scanner.nextInt();
 	if(teacherChoice==1)
 	{
-		System.out.println("Enter new name to update");
+		System.out.println("Enter new name to update:");
 		scanner.nextLine();
 		String newName=scanner.nextLine();
 		String query="update student set sname=? where id=?";
@@ -104,7 +110,7 @@ public void updateStudent(Student student) throws Exception
 	}
 	if(teacherChoice==2)
 	{
-		System.out.println("Enter correct DOB to update");
+		System.out.println("Enter correct DOB to update:");
 		scanner.nextLine();
 		String newDob=scanner.nextLine();
 		String query="update student set dob=? where id=?";
@@ -119,7 +125,7 @@ public void updateStudent(Student student) throws Exception
 	}
 	if(teacherChoice==3)
 	{
-		System.out.println("Enter student's standard to update");
+		System.out.println("Enter student's standard to update:");
 		scanner.nextLine();
 		String newStandard=scanner.nextLine();
 		String query="update student set standard=? where id=?";
@@ -134,7 +140,7 @@ public void updateStudent(Student student) throws Exception
 	}
 	if(teacherChoice==4)
 	{
-		System.out.println("Enter new address to update");
+		System.out.println("Enter new address to update:");
 		scanner.nextLine();
 		String newAddress=scanner.nextLine();
 		String query="update student set address=? where id=?";
@@ -199,15 +205,15 @@ public void addQuiz() throws Exception
 {
 	Quiz quiz=new Quiz();
 	Connection con=DBUtil.getConnection();
-	System.out.println("Enter subId");
+	System.out.println("Enter subId:");
 	int subId=scanner.nextInt();
-	System.out.println("Enter quizId");
+	System.out.println("Enter quizId:");
 	String quizId=scanner.nextLine();
 	scanner.nextLine();
-	System.out.println("Enter totalQues");
+	System.out.println("Enter totalQues:");
 	int totalQues=scanner.nextInt();
 	scanner.nextLine();
-	System.out.println("Enter quizname");
+	System.out.println("Enter quizname:");
 	String quizName=scanner.nextLine();
 	
 	PreparedStatement pst=con.prepareStatement("insert into quiz values(?,?,?,?)");
@@ -218,51 +224,63 @@ public void addQuiz() throws Exception
 	pst.execute();
 	System.out.println("You are ready to add questions!!!....");
 }
+public void deleteQuiz() throws Exception
+{
+	Quiz quiz=new Quiz();
+	Connection con=DBUtil.getConnection();
+	System.out.print("Enter id of quiz to delete:");
+	String quizId=scanner.nextLine();
+	PreparedStatement pst=con.prepareStatement("delete from subject where id=?");
+	pst.setString(1,quiz.getId() );
+	pst.execute();
+	System.out.println("quiz with "+quizId+" deleted");
+}
+
+
+
+
 
 
 public void addQuestion() throws Exception
 {
 	Question question=new Question();
 	Connection con=DBUtil.getConnection();
-	System.out.println("Enter quizId");
+	System.out.print("Enter quizId:");
 	String quizId=scanner.nextLine();
-	scanner.nextLine();
-	System.out.println("Enter quesNo");
-	int quesNo=scanner.nextInt();
-	scanner.nextLine();
-	System.out.println("Enter question");
+	System.out.print("Enter quesNo:");
+	String quesNo=scanner.nextLine();
+	System.out.print("Enter question:");
 	String ques=scanner.nextLine();
 	
 	
 	PreparedStatement pst=con.prepareStatement("insert into question values(?,?,?)");
 	pst.setString(1,quizId);
-	pst.setInt(2,quesNo);
+	pst.setString(2,quesNo);
 	pst.setString(3, ques);
 	pst.execute();
-	System.out.println("You are ready to add answers!!!....");
+	System.out.println("Questions are added successfully....");
 }
 
 public void addAnswer() throws Exception
 {
 	Answer answer=new Answer();
 	Connection con=DBUtil.getConnection();
-	System.out.println("Enter quesNo");
-	int quesNo=scanner.nextInt();
-	scanner.nextLine();
-	System.out.println("Enter option1");
+	System.out.print("Enter quesNo:");
+	String quesNo=scanner.nextLine();
+	System.out.print("Enter option1:");
 	String option1=scanner.nextLine();;
-	System.out.println("Enter option2");
+	System.out.print("Enter option2:");
 	String option2=scanner.nextLine();;
-	System.out.println("Enter option3");
+	System.out.print("Enter option3:");
 	String option3=scanner.nextLine();;
-	System.out.println("Enter option4");
+	System.out.print("Enter option4:");
 	String option4=scanner.nextLine();;
-	System.out.println("Enter crct answer");
+	System.out.print("Enter crct answer:");
 	int crctAns=scanner.nextInt();
 	
 	
 	PreparedStatement pst=con.prepareStatement("insert into answer values(?,?,?,?,?,?)");
-	pst.setInt(1,quesNo);
+	pst.setString(1,quesNo);
 	pst.setString(2,option1);
 	pst.setString(3,option2);
 	pst.setString(4,option3);
@@ -276,38 +294,41 @@ public void addAnswer() throws Exception
 public void takeQuiz() throws Exception
 {
 	Connection con=DBUtil.getConnection();
-	System.out.println("Enter your id");
+	System.out.print("Enter your quizId to take quiz:");
+	String quizId=scanner.nextLine();
+	scanner.nextLine();
+	System.out.print("Enter your id:");
 	int rollNo=scanner.nextInt();
 	String query="select q.quesNo,q.question,a.option1,a.option2,a.option3,a.option4,a.crctAns from question q join answer a on q.quesNo=a.quesNo";
 	int score=0;
 	int subId=0;
-	String quizId="";
+	//String quizId="";
 	String studName="",subName="";
 	String sql="select s.id,s.sname,sub.id,sub.name,quiz.id from student s join subject sub on  s.classNo=sub.classNo join quiz on sub.id=quiz.subId where s.id="+rollNo;
 	Statement statement=con.createStatement();
 	ResultSet resultSet=statement.executeQuery(sql);
 	while(resultSet.next())
 	{
-		rollNo=resultSet.getInt(1);
+		//rollNo=resultSet.getInt(1);
 		studName=resultSet.getString(2);
 		subId=resultSet.getInt(3);
 		subName=resultSet.getString(4);
-		quizId=resultSet.getString(5);
+		//quizId=resultSet.getString(5);
 	}
 	//System.out.println(rollNo+" "+studName+" "+subId+" "+subName+" "+quizId);
 	PreparedStatement pst=con.prepareStatement(query);
 	ResultSet rs=pst.executeQuery(query);
 	while(rs.next())
 	{
-		System.out.println(rs.getInt(1)+" "+rs.getString(2)+" \n"+rs.getString(3)+" "+rs.getString(4)+" "+rs.getString(5)+" "+rs.getString(6));
-		System.out.println("Enter your response");
+		System.out.println(rs.getString(1)+" "+rs.getString(2)+" \n"+rs.getString(3)+" \n"+rs.getString(4)+" \n"+rs.getString(5)+" \n"+rs.getString(6));
+		System.out.print("Enter your answer:");
 		int chooseAns=scanner.nextInt();
 		if(chooseAns==rs.getInt(7))
 		{
 			score=score+1;
 		}
 	}
-	System.out.println("Score is "+score);
+	System.out.println("Your score is "+score);
 	
 	String query1="insert into result values(?,?,?,?,?,?)";
 	PreparedStatement pst1=con.prepareStatement(query1);

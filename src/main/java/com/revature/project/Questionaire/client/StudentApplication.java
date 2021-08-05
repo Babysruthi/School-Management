@@ -24,11 +24,17 @@ public class StudentApplication
 			{
 				case 1:
 				{
+					System.out.println("Enter rollNo:");
 					int rollNo=scanner.nextInt();scanner.nextLine();
+					System.out.println("Enter name:");
 					String name=scanner.nextLine();;
+					System.out.println("Enter dob:");
 					String dob=scanner.nextLine();;
+					System.out.println("Enter standard:");
 					String standard=scanner.nextLine();;
+					System.out.println("Enter address:");
 					String address=scanner.nextLine();;
+					System.out.println("Enter classNo:");
 					int classNo=scanner.nextInt();
 
 					student.setRollNo(rollNo);
@@ -45,7 +51,7 @@ public class StudentApplication
 			
 				case 2:
 				{
-					System.out.println("Enter the student's id to delete");
+					System.out.println("Enter the student's id to delete:");
 					int studentId=scanner.nextInt();
 					student.setRollNo(studentId);
 					scontroller.deleteStudent(student);

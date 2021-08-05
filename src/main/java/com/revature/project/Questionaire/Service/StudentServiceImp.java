@@ -24,10 +24,11 @@ public class StudentServiceImp implements StudentService
 	{
 		studentDaoImp.updateStudent(student);
 	}
-//	public void checkTeacher(String teacherId,String teacherPass)throws Exception
-//	{
-//		studentDaoImp.checkTeacher(teacherId,teacherPass);
-//	}
+	public int checkTeacher(int teacherId,int teacherPass)throws Exception
+	{
+		int subId=studentDaoImp.checkTeacher(teacherId,teacherPass);
+		return subId;
+	}
 	
 	
 	public void addSubject(Subject subject) throws Exception
@@ -55,6 +56,15 @@ public class StudentServiceImp implements StudentService
 	{
 		studentDaoImp.addQuiz();
 	}
+	public void deleteQuiz() throws Exception
+	{
+		studentDaoImp.deleteQuiz();
+	}
+	
+	
+	
+	
+	
 	public void addQuestion() throws Exception
 	{
 		studentDaoImp.addQuestion();

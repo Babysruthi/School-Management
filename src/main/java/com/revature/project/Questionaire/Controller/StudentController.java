@@ -5,13 +5,15 @@ import com.revature.project.Questionaire.Subject;
 import com.revature.project.Questionaire.Service.StudentService;
 import com.revature.project.Questionaire.Service.StudentServiceImp;
 
+
 public class StudentController
 {
 	StudentService studentService=new StudentServiceImp();
-//	 public void checkTeacher(String teacherId,String teacherPass) throws Exception
-//	 {
-//		 studentService.checkTeacher(teacherId,teacherPass);
-//	  }
+	 public int checkTeacher(int teacherId,int teacherPass) throws Exception
+	 {
+		 int subId=studentService.checkTeacher(teacherId,teacherPass);
+			return subId;
+	  }
 	public void addStudent(Student student) throws Exception
 	{
 		studentService.addStudent(student);
@@ -54,6 +56,12 @@ public class StudentController
 	{
 		studentService.addQuiz();
 	}
+	public void deleteQuiz() throws Exception
+	{
+		studentService.deleteQuiz();
+	}
+	
+	
 	public void addQuestion() throws Exception
 	{
 		studentService.addQuestion();
