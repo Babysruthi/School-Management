@@ -5,6 +5,7 @@ import java.util.Scanner;
 import org.apache.log4j.Logger;
 
 import com.revature.project.Questionaire.Teacher;
+import com.revature.project.Questionaire.Controller.QuizController;
 import com.revature.project.Questionaire.Controller.StudentController;
 import com.revature.project.exception.InvalidException;
 
@@ -18,13 +19,12 @@ public class MainApplication {
 		int subId = 0;
 		boolean bool = true;
 		System.out.println("welcome!!");
-		StudentController scontroller = new StudentController();
-
+		QuizController quizController=new QuizController();
 		System.out.print("Enter teacher id:");
 		int teacherId = scanner.nextInt();
 		System.out.print("Enter teacher pass:");
 		int teacherPass = scanner.nextInt();
-		subId = scontroller.checkTeacher(teacherId, teacherPass);
+		subId = quizController.checkTeacher(teacherId, teacherPass);
 		if (subId != 0)
 			bool = true;
 		else {

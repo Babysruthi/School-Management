@@ -5,6 +5,7 @@ import java.util.Scanner;
 import org.apache.log4j.Logger;
 
 import com.revature.project.Questionaire.Quiz;
+import com.revature.project.Questionaire.Controller.QuizController;
 import com.revature.project.Questionaire.Controller.StudentController;
 
 public class quizApplication {
@@ -15,7 +16,7 @@ public class quizApplication {
 
 		System.out.println("------QUIZ-----");
 		Scanner scanner = new Scanner(System.in);
-		StudentController scontroller = new StudentController();
+		QuizController quizcontroller = new QuizController();
 
 		Quiz quiz = new Quiz();
 
@@ -27,31 +28,31 @@ public class quizApplication {
 			switch (teacherChoice) {
 			case 1:
 				logger.info("In quizApplication -> AddQuiz");
-				scontroller.addQuiz();
+				quizcontroller.addQuiz();
 				break;
 			case 2:
 				logger.info("In quizApplication -> DeleteQuiz");
-				scontroller.deleteQuiz();
+				quizcontroller.deleteQuiz();
 				break;
 			case 3:
 				logger.info("In quizApplication -> List ofQuizes");
-				scontroller.listQuiz();
+				quizcontroller.listQuiz();
 				break;
 			case 4:
 				logger.info("In quizApplication -> AddQuestion");
-				scontroller.addQuestion();
+				quizcontroller.addQuestion();
 				break;
 			case 5:
 				logger.info("In quizApplication -> AddAnswer");
-				scontroller.addAnswer();
+				quizcontroller.addAnswer();
 				break;
 			case 6:
 				logger.info("In quizApplication -> TakeQuiz");
-				scontroller.takeQuiz();
+				quizcontroller.takeQuiz();
 				break;
 			case 7:
 				logger.info("In quizApplication -> Result");
-				scontroller.result();
+				quizcontroller.result();
 				break;
 
 			case 8:

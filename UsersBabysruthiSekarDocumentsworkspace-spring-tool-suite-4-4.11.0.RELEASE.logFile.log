@@ -2,3 +2,14 @@
 2021-08-05 19:45:56 INFO  class:65 - In MainApplication -> LogOut
 2021-08-05 20:13:30 INFO  class:42 - In MainApplication -> For StudentDetails
 2021-08-05 20:13:32 INFO  class:58 - In studentApplication -> Delete Student
+2021-08-06 11:45:55 INFO  class:40 - In MainApplication -> For StudentDetails
+2021-08-06 11:45:57 INFO  class:68 - In studentApplication -> ListOf Students
+2021-08-06 11:46:07 INFO  class:80 - In studentApplication -> Back to main
+2021-08-06 11:46:08 INFO  class:48 - In MainApplication -> For SubjectDetails
+2021-08-06 11:46:11 INFO  class:59 - In subjectApplication -> List Subjects
+2021-08-06 11:46:17 INFO  class:71 - In subjectApplication -> Back to main
+2021-08-06 11:46:19 INFO  class:54 - In MainApplication -> For Quiz
+2021-08-06 11:46:22 INFO  class:50 - In quizApplication -> TakeQuiz
+2021-08-06 11:46:41 INFO  class:54 - In quizApplication -> Result
+2021-08-06 11:46:45 INFO  class:59 - In quizApplication -> Back to main
+2021-08-06 11:46:45 INFO  class:60 - In MainApplication -> 

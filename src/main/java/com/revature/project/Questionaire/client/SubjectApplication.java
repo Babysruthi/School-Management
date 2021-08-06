@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import com.revature.project.Questionaire.Student;
 import com.revature.project.Questionaire.Subject;
 import com.revature.project.Questionaire.Controller.StudentController;
+import com.revature.project.Questionaire.Controller.SubjectController;
 
 public class SubjectApplication {
 
@@ -16,7 +17,7 @@ public class SubjectApplication {
 
 		System.out.println("------Subject Application-----");
 		Scanner scanner = new Scanner(System.in);
-		StudentController scontroller = new StudentController();
+		SubjectController scontroller = new SubjectController();
 
 		Subject subject = new Subject();
 		boolean s = true;
