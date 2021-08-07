@@ -11,6 +11,7 @@ import java.util.Scanner;
 import org.apache.log4j.Logger;
 
 import com.revature.project.Questionaire.Subject;
+import com.revature.project.Questionaire.SubjectClass;
 import com.revature.project.Questionaire.DBUtil.DBUtil;
 import com.revature.project.exception.CustomClassNotFoundException;
 import com.revature.project.exception.InvalidException;
@@ -37,16 +38,29 @@ public class SubjectDaoImp implements SubjectDao {
 
 	public void addSubject(Subject subject) {
 		try (Connection con = DBUtil.getConnection();) {
-			PreparedStatement pst = con.prepareStatement("insert into subject values(?,?)");
+			PreparedStatement pst = con.prepareStatement("insert into subject values(?,?,?)");
 			pst.setInt(1, subject.getSubId());
 			pst.setString(2, subject.getSubName());
-			// pst.setInt(3, subject.getClassNo());
+		   pst.setInt(3, subject.getClassNo());
 			int result = pst.executeUpdate();
 			if (result > 0) {
 				subIdList.add(subject.getSubId());
+				
+//				SubjectClass subjectClass=new SubjectClass();
+//					System.out.print("Enter classNo");
+//					int classNo=scanner.nextInt();
+//					PreparedStatement ps = con.prepareStatement("insert into subject_class values(?,?)");
+//					ps.setInt(1,subject.getSubId() );
+//					ps.setInt(2,classNo);
+//					
+//					ps.execute();
+				
 				logger.info("Subject is added successfully");
+				
+				
+				
 			} else
-				logger.info("Subject id is entered");
+				logger.info("Enter valid sub Id");
 		} catch (SQLException e) {
 			logger.warn(e.getMessage());
 		}

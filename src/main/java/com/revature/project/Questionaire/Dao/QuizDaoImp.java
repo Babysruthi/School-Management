@@ -82,7 +82,6 @@ public class QuizDaoImp implements QuizDao {
 				pst.setString(2, quizId);
 				pst.setString(3, quizName);
 				pst.setInt(4, totalQues);
-				quizIdList.add(quizId);
 				pst.executeUpdate();
 				System.out.println("You are ready to add questions!!!....");
 			} else {
@@ -124,12 +123,12 @@ public class QuizDaoImp implements QuizDao {
 			int sId = scanner.nextInt();
 			if (sId == subId) {
 				String query = "select id,name from quiz where subId=" + sId;
+
 				PreparedStatement pst = con.prepareStatement(query);
 				ResultSet resultSet = pst.executeQuery(query);
-				int flag = 0;
 				while (resultSet.next()) {
 					System.out.println(resultSet.getString(1));
-					flag = 1;
+					quizIdList.add(resultSet.getString(1));
 				}
 			} else {
 				throw new InvalidSubIdException("You cant able to see the quizes of other subject");
@@ -206,28 +205,34 @@ public class QuizDaoImp implements QuizDao {
 	public void takeQuiz() {
 		try {
 			Connection con = DBUtil.getConnection();
+			scanner.nextLine();
 			System.out.print("Enter your quizId to take quiz:");
 			String quizId = scanner.nextLine();
-			if (quizIdList.contains(quizId)) {
+			int flag=0;
+//			if (quizIdList.contains(quizId)) {
 				scanner.nextLine();
 				System.out.print("Enter your id:");
 				int rollNo = scanner.nextInt();
-				String query = "select q.quesNo,q.question,a.option1,a.option2,a.option3,a.option4,a.crctAns from question q join answer a on q.quesNo=a.quesNo";
-				int score = 0;
-
 				String studName = "", subName = "";
-				String sql = "select s.id,s.sname,sub.id,sub.name,quiz.id from student s join subject sub on  s.classNo=sub.classNo join quiz on sub.id=quiz.subId where s.id="
-						+ rollNo;
+				//String sql = "select s.id,s.sname,sub.id,sub.name,quiz.id from student s join subject sub on  s.classNo=sub.classNo join quiz on sub.id=quiz.subId where s.id="+ rollNo;
+				
+				String sql ="select s.id,s.sname,sc.subId,sub.name,q.id as QuizId,q.name as QuizName from student s \r\n"
+						+ "join subject_class sc on s.classNo=sc.classNo \r\n"
+						+ "join subject sub on sc.subId=sub.id\r\n"
+						+ "join quiz q on q.subId=sub.id where s.id="+rollNo;
+				
 				Statement statement = con.createStatement();
 				ResultSet resultSet = statement.executeQuery(sql);
 				while (resultSet.next()) {
-					// rollNo=resultSet.getInt(1);
 					studName = resultSet.getString(2);
-					// subId=resultSet.getInt(3);
 					subName = resultSet.getString(4);
-					// quizId=resultSet.getString(5);
+					flag=1;
 				}
+				
 				// System.out.println(rollNo+" "+studName+" "+subId+" "+subName+" "+quizId);
+				if(flag==1) {
+				String query = "select q.quesNo,q.question,a.option1,a.option2,a.option3,a.option4,a.crctAns from question q join answer a on q.quesNo=a.quesNo";
+				int score = 0;
 				PreparedStatement pst = con.prepareStatement(query);
 				ResultSet rs = pst.executeQuery(query);
 				while (rs.next()) {
@@ -251,9 +256,9 @@ public class QuizDaoImp implements QuizDao {
 				pst1.setInt(6, score);
 				pst1.executeUpdate();
 			} else {
-				throw new QuizIdNotFoundException("Give correct quizId to take the quiz");
+				throw new InvalidException("Give correct quizId or RollNo to take the quiz");
 			}
-		} catch (SQLException | QuizIdNotFoundException e) {
+		} catch (SQLException |InvalidException e) {
 			logger.warn(e.getMessage());
 		}
 	}
@@ -264,7 +269,10 @@ public class QuizDaoImp implements QuizDao {
 			Connection con = DBUtil.getConnection();
 			System.out.println("Enter you quizID:");
 			String Id = scanner.nextLine();
-			String query1 = "select * from result";
+			scanner.nextLine();
+			
+			
+			String query1 = " select r.* from result r join quiz q on r.subId="+subId;
 			Statement st = con.createStatement();
 			ResultSet resultSet = st.executeQuery(query1);
 			System.out.println(

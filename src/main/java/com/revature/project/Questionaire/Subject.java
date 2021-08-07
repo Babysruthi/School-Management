@@ -6,6 +6,8 @@ public class Subject {
 	private String subName;
 	private Integer classNo;
 
+	
+
 	public Integer getClassNo() {
 		return classNo;
 	}

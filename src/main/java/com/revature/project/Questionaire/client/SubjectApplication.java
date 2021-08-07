@@ -40,7 +40,6 @@ public class SubjectApplication {
 				subject.setSubId(subjectId);
 				subject.setSubName(subName);
 				subject.setClassNo(classNo);
-
 				scontroller.addSubject(subject);
 
 				break;

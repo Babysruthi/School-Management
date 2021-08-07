@@ -165,3 +165,76 @@
 2021-08-07 11:49:00 INFO  class:56 - In quizApplication -> Result
 2021-08-07 11:55:49 INFO  class:61 - In quizApplication -> Back to main
 2021-08-07 11:55:49 INFO  class:58 - In MainApplication -> 
+2021-08-07 14:13:17 INFO  class:38 - In MainApplication -> For StudentDetails
+2021-08-07 14:13:24 INFO  class:68 - In studentApplication -> ListOf Students
+2021-08-07 14:13:37 INFO  class:80 - In studentApplication -> Back to main
+2021-08-07 14:13:39 INFO  class:46 - In MainApplication -> For SubjectDetails
+2021-08-07 14:13:42 INFO  class:57 - In subjectApplication -> List Subjects
+2021-08-07 14:14:09 INFO  class:69 - In subjectApplication -> Back to main
+2021-08-07 14:14:11 INFO  class:52 - In MainApplication -> For Quiz
+2021-08-07 14:14:15 INFO  class:39 - In quizApplication -> List ofQuizes
+2021-08-07 14:14:41 INFO  class:51 - In quizApplication -> TakeQuiz
+2021-08-07 14:14:41 WARN  class:257 - Give correct quizId to take the quiz
+2021-08-07 14:16:33 INFO  class:52 - In MainApplication -> For Quiz
+2021-08-07 14:16:35 INFO  class:51 - In quizApplication -> TakeQuiz
+2021-08-07 14:16:47 WARN  class:258 - Give correct quizId to take the quiz
+2021-08-07 14:16:56 INFO  class:39 - In quizApplication -> List ofQuizes
+2021-08-07 14:21:30 INFO  class:52 - In MainApplication -> For Quiz
+2021-08-07 14:21:32 INFO  class:51 - In quizApplication -> TakeQuiz
+2021-08-07 14:21:55 INFO  class:60 - In quizApplication -> Back to main
+2021-08-07 14:21:55 INFO  class:58 - In MainApplication -> 
+2021-08-07 14:25:07 INFO  class:52 - In MainApplication -> For Quiz
+2021-08-07 14:25:10 INFO  class:51 - In quizApplication -> TakeQuiz
+2021-08-07 14:25:17 WARN  class:256 - Give correct quizId to take the quiz
+2021-08-07 14:25:24 INFO  class:39 - In quizApplication -> List ofQuizes
+2021-08-07 14:25:31 INFO  class:51 - In quizApplication -> TakeQuiz
+2021-08-07 14:25:31 WARN  class:256 - Give correct quizId to take the quiz
+2021-08-07 14:25:40 INFO  class:60 - In quizApplication -> Back to main
+2021-08-07 14:25:40 INFO  class:58 - In MainApplication -> 
+2021-08-07 14:26:43 INFO  class:52 - In MainApplication -> For Quiz
+2021-08-07 14:26:46 INFO  class:51 - In quizApplication -> TakeQuiz
+2021-08-07 14:26:50 WARN  class:257 - Give correct quizId to take the quiz
+2021-08-07 14:27:41 INFO  class:52 - In MainApplication -> For Quiz
+2021-08-07 14:27:44 INFO  class:51 - In quizApplication -> TakeQuiz
+2021-08-07 14:27:49 WARN  class:257 - Give correct quizId to take the quiz
+2021-08-07 14:30:55 INFO  class:52 - In MainApplication -> For Quiz
+2021-08-07 14:30:58 INFO  class:51 - In quizApplication -> TakeQuiz
+2021-08-07 14:31:47 WARN  class:255 - Cannot add or update a child row: a foreign key constraint fails (`quiz`.`result`, CONSTRAINT `result_ibfk_1` FOREIGN KEY (`studId`) REFERENCES `student` (`id`))
+2021-08-07 14:31:52 INFO  class:55 - In quizApplication -> Result
+2021-08-07 14:35:18 INFO  class:52 - In MainApplication -> For Quiz
+2021-08-07 14:35:21 INFO  class:51 - In quizApplication -> TakeQuiz
+2021-08-07 14:35:29 WARN  class:257 - Give correct quizId or RollNo to take the quiz
+2021-08-07 14:35:37 INFO  class:51 - In quizApplication -> TakeQuiz
+2021-08-07 14:35:46 WARN  class:257 - Give correct quizId or RollNo to take the quiz
+2021-08-07 14:35:50 INFO  class:60 - In quizApplication -> Back to main
+2021-08-07 14:35:50 INFO  class:58 - In MainApplication -> 
+2021-08-07 14:45:02 INFO  class:52 - In MainApplication -> For Quiz
+2021-08-07 14:45:10 INFO  class:39 - In quizApplication -> List ofQuizes
+2021-08-07 14:45:14 INFO  class:55 - In quizApplication -> Result
+2021-08-07 14:46:15 INFO  class:52 - In MainApplication -> For Quiz
+2021-08-07 14:46:16 INFO  class:55 - In quizApplication -> Result
+2021-08-07 14:58:21 INFO  class:46 - In MainApplication -> For SubjectDetails
+2021-08-07 14:58:27 INFO  class:31 - In subjectApplication -> Add Subjects
+2021-08-07 14:58:33 WARN  class:70 - Column count doesn't match value count at row 1
+2021-08-07 14:59:34 INFO  class:46 - In MainApplication -> For SubjectDetails
+2021-08-07 14:59:35 INFO  class:31 - In subjectApplication -> Add Subjects
+2021-08-07 14:59:41 WARN  class:71 - Column count doesn't match value count at row 1
+2021-08-07 14:59:46 INFO  class:53 - In subjectApplication -> List Subjects
+2021-08-07 15:01:25 INFO  class:46 - In MainApplication -> For SubjectDetails
+2021-08-07 15:01:26 INFO  class:31 - In subjectApplication -> Add Subjects
+2021-08-07 15:01:30 WARN  class:65 - Column count doesn't match value count at row 1
+2021-08-07 15:07:24 INFO  class:52 - In MainApplication -> For Quiz
+2021-08-07 15:07:27 INFO  class:51 - In quizApplication -> TakeQuiz
+2021-08-07 15:07:44 INFO  class:55 - In quizApplication -> Result
+2021-08-07 15:59:00 INFO  class:46 - In MainApplication -> For SubjectDetails
+2021-08-07 15:59:00 INFO  class:31 - In subjectApplication -> Add Subjects
+2021-08-07 16:01:11 INFO  class:46 - In MainApplication -> For SubjectDetails
+2021-08-07 16:01:13 INFO  class:31 - In subjectApplication -> Add Subjects
+2021-08-07 16:01:19 INFO  class:58 - Subject is added successfully
+2021-08-07 16:01:21 INFO  class:56 - In subjectApplication -> List Subjects
+2021-08-07 16:01:23 INFO  class:68 - In subjectApplication -> Back to main
+2021-08-07 16:01:25 INFO  class:52 - In MainApplication -> For Quiz
+2021-08-07 16:01:29 INFO  class:39 - In quizApplication -> List ofQuizes
+2021-08-07 16:01:35 INFO  class:55 - In quizApplication -> Result
+2021-08-07 16:01:43 INFO  class:60 - In quizApplication -> Back to main
+2021-08-07 16:01:43 INFO  class:58 - In MainApplication -> 
