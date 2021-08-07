@@ -1,23 +1,25 @@
 package com.revature.project.Questionaire.Dao;
 
+import java.util.List;
+
 import com.revature.project.exception.InvalidException;
+import com.revature.project.exception.InvalidStaffLoginException;
 
 public interface QuizDao {
-	public int checkTeacher(int teacherId, int teacherPass) throws InvalidException, Exception;
-
-
 	
-	public void addQuiz() throws InvalidException, Exception;
+	public int checkTeacher(int teacherId, int teacherPass)throws InvalidStaffLoginException; 
+	
+	public void addQuiz() ;
 
-	public void deleteQuiz() throws InvalidException, Exception;
+	public void deleteQuiz() ;
 
-	public void listQuiz() throws InvalidException, Exception;
+	public List<String> listQuiz();
 
-	public void addQuestion() throws InvalidException, Exception;
+	public void addQuestion() ;
 
-	public void addAnswer() throws InvalidException, Exception;
+	public void addAnswer();
 
-	public void takeQuiz() throws InvalidException, Exception;
+	public void takeQuiz();
 
-	public void result() throws InvalidException, Exception;
+	public void result();
 }

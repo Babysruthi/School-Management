@@ -1,5 +1,7 @@
 package com.revature.project.Questionaire.client;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import org.apache.log4j.Logger;
@@ -12,18 +14,18 @@ public class quizApplication {
 
 	static Logger logger = Logger.getLogger("quizApplication.class");
 
-	public void quiz() throws Exception {
-
+	
+	public void quiz()  {
+		List<String>quizId=new ArrayList<String>();
 		System.out.println("------QUIZ-----");
 		Scanner scanner = new Scanner(System.in);
 		QuizController quizcontroller = new QuizController();
 
 		Quiz quiz = new Quiz();
-
 		boolean s = true;
 		while (s) {
 			System.out.println(
-					"\n1 Add Quiz\n2 Delete Quiz\n3 List Quiz for particular subject\n4 Add Question\n5 Add Answer\n6 To takeQuiz\n7 Result\n8 Back to main");
+					"\n1 Add Quiz\n2 Delete Quiz\n3 List Quiz for your subject\n4 Add Question\n5 Add Answer\n6 To takeQuiz\n7 Result\n8 Back to main");
 			int teacherChoice = scanner.nextInt();
 			switch (teacherChoice) {
 			case 1:
@@ -36,7 +38,7 @@ public class quizApplication {
 				break;
 			case 3:
 				logger.info("In quizApplication -> List ofQuizes");
-				quizcontroller.listQuiz();
+				quizId=quizcontroller.listQuiz();
 				break;
 			case 4:
 				logger.info("In quizApplication -> AddQuestion");
@@ -60,6 +62,11 @@ public class quizApplication {
 				System.out.println("Back to Main Application!!");
 				s = false;
 				break;
+			
+			default:
+				logger.warn("Enter valid choice (1-8)");
+				break;
+		
 			}
 
 		}

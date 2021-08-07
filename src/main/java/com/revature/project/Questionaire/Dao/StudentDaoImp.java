@@ -1,11 +1,18 @@
 package com.revature.project.Questionaire.Dao;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
+
+import org.apache.log4j.Logger;
 
 import com.revature.project.Questionaire.Answer;
 import com.revature.project.Questionaire.Question;
@@ -13,105 +20,108 @@ import com.revature.project.Questionaire.Quiz;
 import com.revature.project.Questionaire.Student;
 import com.revature.project.Questionaire.Subject;
 import com.revature.project.Questionaire.DBUtil.DBUtil;
+import com.revature.project.exception.CustomClassNotFoundException;
 import com.revature.project.exception.InvalidException;
+import com.revature.project.exception.InvalidRollNoException;
 
 public class StudentDaoImp implements StudentDao {
 	static int subId = 0;
 	static String sub = "";
+	List<Integer>studentIdList=new ArrayList<Integer>();
+	List<Integer>classNoList=new ArrayList<Integer>();
 	Scanner scanner = new Scanner(System.in);
 
-	public int checkTeacher(int teacherId, int teacherPass) throws InvalidException, Exception {
-		Connection con = DBUtil.getConnection();
-		Statement st = con.createStatement();
-		String query = ("select * from teacher");
-		int id1 = 0, pass1 = 0;
-		int flag = 0;
-		ResultSet rs = st.executeQuery(query);
-		while (rs.next()) {
-			id1 = rs.getInt("id");
-			pass1 = rs.getInt("pass");
-			subId = rs.getInt("subId");
-
-			if ((teacherId == id1) && (teacherPass == pass1)) {
-				flag = 1;
+	
+	
+Logger logger=Logger.getLogger("StudentDaoImp.class");
+	public void addStudent(Student student) {
+		
+		try (Connection con = DBUtil.getConnection();){
+			PreparedStatement pst = con.prepareStatement("insert into student values(?,?,?,?,?,?)");
+			
+			if((student.getRollNo()>=1000&&student.getRollNo()<9999)&&student.getRollNo()>0) {
+			pst.setInt(1, student.getRollNo());
+			studentIdList.add(student.getClassNo());
+			pst.setString(2, student.getName());
+			pst.setString(3, student.getDob());
+			pst.setString(4, student.getStandard());
+			pst.setString(5, student.getAddress());
+			pst.setInt(6, student.getClassNo());
+			classNoList.add(student.getClassNo());
+			pst.executeUpdate();
 			}
-
+			
+			else
+				throw new InvalidRollNoException("RollNo should not be negative and must be of 4 digits..");
 		}
-		if (flag == 1) {
-
-			ResultSet resultSet = st.executeQuery(
-					"select s.name from subject s join teacher t on s.id=t.subId where t.id=" + teacherId);
-			while (resultSet.next()) {
-				sub = resultSet.getString(1);
+			catch(SQLException|InvalidRollNoException e)
+			{
+				logger.warn(e.getMessage());
+		
 			}
-			System.out.println(sub);
-		} else {
-			throw new InvalidException("Invalid user or pass!");
-
-		}
-		con.close();
-		return subId;
+		
+		
 	}
 
-	public void addStudent(Student student) throws Exception {
-		Connection con = DBUtil.getConnection();
-		PreparedStatement pst = con.prepareStatement("insert into student values(?,?,?,?,?,?)");
-		pst.setInt(1, student.getRollNo());
-		pst.setString(2, student.getName());
-		pst.setString(3, student.getDob());
-		pst.setString(4, student.getStandard());
-		pst.setString(5, student.getAddress());
-		pst.setInt(6, student.getClassNo());
-		int result = pst.executeUpdate();
-		con.close();
-		if (result > 0)
-			System.out.println("Student added..");
-		else
-			throw new InvalidException("Enter correct details!..Error..check datatypes,duplicates");
-
-	}
-
-	public void deleteStudent(Student student) throws Exception {
-		Connection con = DBUtil.getConnection();
+	public void deleteStudent(Student student) 
+	{
+		try(Connection con = DBUtil.getConnection();)
+		{
+		if(studentIdList.contains(student.getRollNo()))
+		{
 		PreparedStatement pst = con.prepareStatement("delete from student where id=?");
 		pst.setInt(1, student.getRollNo());
-		int result = pst.executeUpdate();
+		pst.executeUpdate();
 		con.close();
-		if (result > 0)
 			System.out.println("Student removed....");
+		}
+		
 		else
-
-			throw new InvalidException("Student Id is not present");
+			throw new InvalidRollNoException("Student Id is not present");
+		}
+		catch(SQLException |InvalidRollNoException e)
+		{
+			logger.info(e.getMessage());
+		}
 
 	}
 
-	public void retrieveStudent(Student student) throws Exception {
-		Connection con = DBUtil.getConnection();
+	public void retrieveStudent(Student student) {
+		try(Connection con = DBUtil.getConnection();)
+		{
+		
 		System.out.println("List of students are ....");
+		
 		System.out.print("Enter classNo of students needed:");
 		int classNo = scanner.nextInt();
-		String query = "select * from student where classNo=" + classNo;
+		System.out.println(classNo);
+		
+		String query = "select * from student where classNo="+classNo;
 		PreparedStatement pst = con.prepareStatement(query);
 		ResultSet resultSet = pst.executeQuery(query);
 		System.out.println();
-		int flag = 0;
 		while (resultSet.next()) {
 			System.out.println(resultSet.getInt(1) + " " + resultSet.getString(2) + " " + resultSet.getString(3) + " "
 					+ resultSet.getString(4) + " " + resultSet.getString(5));
-			flag = 1;
 		}
-		con.close();
-		if (flag == 0)
-			throw new InvalidException("No list of students in this particular classNo " + classNo);
-
+		}
+		
+		catch(SQLException e)
+		{
+			logger.warn(e.getMessage());
+		}
 	}
 
-	public void updateStudent(Student student) throws Exception {
-		Connection con = DBUtil.getConnection();
+	public void updateStudent(Student student) {
+		try(Connection con = DBUtil.getConnection();)
+		{
+		
 		System.out.println("\nEnter the attribute to update \n1 StudentName\n2 DOB\n3 Standard\n4 Address");
 		int teacherChoice = scanner.nextInt();
 		System.out.println("Enter the student's id to update:");
 		int id = scanner.nextInt();
+		if(studentIdList.contains(id))
+		{
 		if (teacherChoice == 1) {
 			System.out.println("Enter new name to update:");
 			scanner.nextLine();
@@ -168,6 +178,14 @@ public class StudentDaoImp implements StudentDao {
 				System.out.println("Address is updated");
 			else
 				System.out.println("Invalid user id!!");
+		}
+		}
+		else
+			throw new InvalidRollNoException("Invalid RollNo");
+		}
+		catch(SQLException|InvalidRollNoException e)
+		{
+			logger.info(e.getMessage());
 		}
 
 	}

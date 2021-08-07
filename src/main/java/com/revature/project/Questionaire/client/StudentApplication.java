@@ -6,11 +6,12 @@ import org.apache.log4j.Logger;
 
 import com.revature.project.Questionaire.Student;
 import com.revature.project.Questionaire.Controller.StudentController;
+import com.revature.project.exception.InvalidException;
 
 public class StudentApplication {
 	static Logger logger = Logger.getLogger("StudentApplication.class");
 
-	public void studentDetails() throws Exception {
+	public void studentDetails() {
 
 		System.out.println("------Enter Student Details-----");
 		Scanner scanner = new Scanner(System.in);
@@ -51,7 +52,7 @@ public class StudentApplication {
 				student.setClassNo(classNo);
 				scontroller.addStudent(student);
 
-				System.out.println("Student is added...");
+				
 				break;
 			}
 
@@ -80,6 +81,10 @@ public class StudentApplication {
 				logger.info("In studentApplication -> Back to main");
 				System.out.println("Back to Main Application!!");
 				s = false;
+				break;
+			}
+			default:{
+				logger.warn("Enter valid choice (1-5)");
 				break;
 			}
 			}

@@ -13,11 +13,12 @@ public class SubjectApplication {
 
 	static Logger logger = Logger.getLogger("StudentApplication.class");
 
-	public void subjectDetails() throws Exception {
+	public void subjectDetails() {
 
 		System.out.println("------Subject Application-----");
 		Scanner scanner = new Scanner(System.in);
 		SubjectController scontroller = new SubjectController();
+		scontroller.classNumList();
 
 		Subject subject = new Subject();
 		boolean s = true;
@@ -35,8 +36,7 @@ public class SubjectApplication {
 				scanner.nextLine();
 				System.out.println("Enter subject");
 				String subName = scanner.nextLine();
-				;
-
+			
 				subject.setSubId(subjectId);
 				subject.setSubName(subName);
 				subject.setClassNo(classNo);
@@ -48,10 +48,8 @@ public class SubjectApplication {
 
 			case 2: {
 				logger.info("In subjectApplication -> Delete Subject");
-				System.out.println("Enter subject's id to remove:");
-				int subjectId = scanner.nextInt();
-				subject.setSubId(subjectId);
-				scontroller.removeSubject(subject);
+			
+				scontroller.removeSubject();
 				break;
 			}
 
@@ -71,6 +69,10 @@ public class SubjectApplication {
 				logger.info("In subjectApplication -> Back to main");
 				System.out.println("Back to Main Application!!");
 				s = false;
+				break;
+			}
+			default:{
+				logger.warn("Enter valid choice (1-5)");
 				break;
 			}
 			}

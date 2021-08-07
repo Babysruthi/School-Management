@@ -12,19 +12,24 @@ public class SubjectServiceImp implements SubjectService{
 	
 	SubjectDao subjectDaoImp = new SubjectDaoImp();
 	
-	public void addSubject(Subject subject) throws InvalidException, Exception {
+	public void classNumList()
+	{
+		subjectDaoImp.classNumList();
+	}
+	
+	public void addSubject(Subject subject)  {
 		subjectDaoImp.addSubject(subject);
 	}
 
-	public void removeSubject(Subject subject) throws InvalidException, Exception {
-		subjectDaoImp.removeSubject(subject);
+	public void removeSubject() {
+		subjectDaoImp.removeSubject();
 	}
 
-	public void listSubject() throws InvalidException, Exception {
+	public void listSubject()  {
 		subjectDaoImp.listSubject();
 	}
 
-	public void updateSubject() throws InvalidException, Exception {
+	public void updateSubject()  {
 		subjectDaoImp.updateSubject();
 	}
 

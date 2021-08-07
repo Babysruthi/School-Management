@@ -9,19 +9,24 @@ public class SubjectController {
 
 	SubjectService subjectService=new SubjectServiceImp();
 	
-	public void addSubject(Subject subject) throws InvalidException, Exception {
+	public void classNumList()
+	{
+		subjectService.classNumList();
+	}
+	
+	public void addSubject(Subject subject)  {
 		subjectService.addSubject(subject);
 	}
 
-	public void removeSubject(Subject subject) throws InvalidException, Exception {
-		subjectService.removeSubject(subject);
+	public void removeSubject() {
+		subjectService.removeSubject();
 	}
 
-	public void listSubject() throws InvalidException, Exception {
+	public void listSubject()  {
 		subjectService.listSubject();
 	}
 
-	public void updateSubject() throws InvalidException, Exception {
+	public void updateSubject()  {
 		subjectService.updateSubject();
 	}
 }

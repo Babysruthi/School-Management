@@ -5,11 +5,12 @@ import com.revature.project.exception.InvalidException;
 
 public interface SubjectService {
 
-	public void addSubject(Subject subject) throws InvalidException, Exception;
+	public void classNumList();
+	public void addSubject(Subject subject);
 
-	public void removeSubject(Subject subject) throws InvalidException, Exception;
+	public void removeSubject() ;
 
-	public void listSubject() throws InvalidException, Exception;
+	public void listSubject() ;
 
-	public void updateSubject() throws InvalidException, Exception;
+	public void updateSubject() ;
 }

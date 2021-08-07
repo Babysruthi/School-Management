@@ -7,33 +7,31 @@ import org.apache.log4j.Logger;
 import com.revature.project.Questionaire.Teacher;
 import com.revature.project.Questionaire.Controller.QuizController;
 import com.revature.project.Questionaire.Controller.StudentController;
+import com.revature.project.exception.InvalidChoiceException;
 import com.revature.project.exception.InvalidException;
+import com.revature.project.exception.InvalidStaffLoginException;
 
 public class MainApplication {
 
 	static Logger logger = Logger.getLogger("MainApplication.class");
 
-	public static void main(String[] args) throws InvalidException, Exception {
+	public static void main(String[] args) throws InvalidChoiceException, InvalidStaffLoginException 
+	{
 
 		Scanner scanner = new Scanner(System.in);
 		int subId = 0;
-		boolean bool = true;
+		boolean bool = false;
 		System.out.println("welcome!!");
 		QuizController quizController=new QuizController();
 		System.out.print("Enter teacher id:");
-		int teacherId = scanner.nextInt();
-		System.out.print("Enter teacher pass:");
+		int teacherId = scanner.nextInt();		System.out.print("Enter teacher pass:");
 		int teacherPass = scanner.nextInt();
 		subId = quizController.checkTeacher(teacherId, teacherPass);
-		if (subId != 0)
-			bool = true;
-		else {
-			bool = false;
-			System.out.println("Enter valid id or pass");
-		}
-
+		
+		bool=true;
+	   
 		while (bool) {
-			System.out.println("\nTo perform CRUD operations for\n1 Students\n2 Subjects\n3 To add quizes\n4 To Exit");
+			System.out.println("\nTo perform CRUD operations for\n1 Students\n2 Subjects\n3 Quiz\n4 To Exit");
 			int teacherChoice = scanner.nextInt();
 			switch (teacherChoice) {
 			case 1: {
@@ -64,7 +62,7 @@ public class MainApplication {
 
 			}
 			default:
-				throw new InvalidException("Enter valid choice");
+				throw new InvalidChoiceException("Enter valid choice(1-4)");
 			}
 
 		}

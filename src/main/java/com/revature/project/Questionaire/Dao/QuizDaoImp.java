@@ -1,57 +1,77 @@
 package com.revature.project.Questionaire.Dao;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+import org.apache.log4j.Logger;
 
 import com.revature.project.Questionaire.Answer;
 import com.revature.project.Questionaire.Question;
 import com.revature.project.Questionaire.Quiz;
 import com.revature.project.Questionaire.DBUtil.DBUtil;
 import com.revature.project.exception.InvalidException;
+import com.revature.project.exception.InvalidSubIdException;
+import com.revature.project.exception.QuizIdNotFoundException;
+import com.revature.project.exception.InvalidStaffLoginException;
 
 public class QuizDaoImp implements QuizDao{
-
+	static Logger logger=Logger.getLogger("QuizDaoImp.class");
 	Scanner scanner=new Scanner(System.in);
 	static int subId=0;
 	static String sub = "";
-	public int checkTeacher(int teacherId, int teacherPass) throws InvalidException, Exception {
-		Connection con = DBUtil.getConnection();
+	List<String>quizIdList=new ArrayList<String>();
+	public int checkTeacher(int teacherId, int teacherPass) throws InvalidStaffLoginException 
+	{
+		try(Connection con = DBUtil.getConnection();)
+		{
 		Statement st = con.createStatement();
 		String query = ("select * from teacher");
 		int id1 = 0, pass1 = 0;
 		int flag = 0;
 		ResultSet rs = st.executeQuery(query);
-		while (rs.next()) {
+		while (rs.next())
+		{
 			id1 = rs.getInt("id");
 			pass1 = rs.getInt("pass");
 			subId = rs.getInt("subId");
 
-			if ((teacherId == id1) && (teacherPass == pass1)) {
+			if ((teacherId == id1) && (teacherPass == pass1))
+			{
 				flag = 1;
 			}
 
 		}
-		if (flag == 1) {
-
+		if (flag == 1) 
+		{
 			ResultSet resultSet = st.executeQuery(
 					"select s.name from subject s join teacher t on s.id=t.subId where t.id=" + teacherId);
-			while (resultSet.next()) {
+			while (resultSet.next()) 
+			{
 				sub = resultSet.getString(1);
 			}
 			System.out.println(sub);
-		} else {
-			throw new InvalidException("Invalid user or pass!");
-
+		} 
+		else
+			throw new InvalidStaffLoginException("Invalid user or pass..");
 		}
-		con.close();
+		catch(SQLException e) {
+			logger.info(e.getMessage());
+		} 
+		
+		
 		return subId;
 	}
 	
-	public void addQuiz() throws Exception {
+	public void addQuiz()  {
 		Quiz quiz = new Quiz();
+		try {
 		Connection con = DBUtil.getConnection();
 		System.out.print("Enter subId:");
 		int sId = scanner.nextInt();
@@ -70,36 +90,50 @@ public class QuizDaoImp implements QuizDao{
 			pst.setString(2, quizId);
 			pst.setString(3, quizName);
 			pst.setInt(4, totalQues);
-			int result = pst.executeUpdate();
-			con.close();
-			if (result > 0)
-				System.out.println("You are ready to add questions!!!....");
-			else
-				throw new InvalidException("Query is not executed!! Error...");
-		} else {
-			throw new InvalidException("You can't able to create quiz for subjectId " + sId);
+			quizIdList.add(quizId);
+			 pst.executeUpdate();
+			System.out.println("You are ready to add questions!!!....");
+		}
+		else
+		{
+			throw new InvalidException("You are not able to create quiz for this subject");
+		}
+		}
+		
+		catch(SQLException|InvalidException e) {
+		logger.info(e.getMessage());
 		}
 	}
-
-	public void deleteQuiz() throws Exception {
-
+	
+	public void deleteQuiz()  {
+		try {
 		Connection con = DBUtil.getConnection();
+		scanner.nextLine();
 		System.out.print("Enter quizId to delete:");
 		String quizId = scanner.nextLine();
+		if(quizIdList.contains(quizId))
+		{
 		PreparedStatement pst = con.prepareStatement("delete from quiz where id=?");
 		pst.setString(1, quizId);
 		int result = pst.executeUpdate();
-		con.close();
-		if (result > 0)
-			System.out.println("quiz with " + quizId + " deleted");
-		else
-			throw new InvalidException("QuizId is not found");
+		}
+		else {
+			throw new QuizIdNotFoundException("QuizId is not Found..");
+		}
+	}
+	catch(SQLException|QuizIdNotFoundException e) {
+		 logger.warn(e.getMessage());
+	}
+		
 	}
 
-	public void listQuiz() throws Exception {
+	public List<String>listQuiz(){
 		Quiz quiz = new Quiz();
+		List<String>quizId=new ArrayList<String>();
+		try {
 		Connection con = DBUtil.getConnection();
-		System.out.print("Enter subId to list quizzes");
+		
+		System.out.print("Enter subId to list quiz:");
 		int sId = scanner.nextInt();
 		if (sId == subId) {
 			String query = "select id,name from quiz where subId=" + sId;
@@ -110,18 +144,28 @@ public class QuizDaoImp implements QuizDao{
 				System.out.println(resultSet.getString(1));
 				flag = 1;
 			}
-			con.close();
-			if (flag == 0)
-				System.out.println("No quizes created for this subjectId " + sId + " yet");
-		} else
-			throw new InvalidException("You are not able to see other subject's quiz..!");
+		}
+		else
+		{
+			throw new InvalidSubIdException("You cant able to see the quizes of other subject");
+		}
+		}
+		catch(SQLException|InvalidSubIdException e)
+		{
+			logger.warn(e.getMessage());
+		}
+			return quizIdList;
 	}
 
-	public void addQuestion() throws Exception {
+	public void addQuestion()  {
 		Question question = new Question();
+		try {
 		Connection con = DBUtil.getConnection();
+		scanner.nextLine();
 		System.out.print("Enter quizId:");
 		String quizId = scanner.nextLine();
+		if(quizIdList.contains(quizId))
+		{
 		System.out.print("Enter quesNo:");
 		String quesNo = scanner.nextLine();
 		System.out.print("Enter question:");
@@ -131,32 +175,34 @@ public class QuizDaoImp implements QuizDao{
 		pst.setString(1, quizId);
 		pst.setString(2, quesNo);
 		pst.setString(3, ques);
-		int result = pst.executeUpdate();
-		con.close();
-		if (result > 0)
+		pst.executeUpdate();
 			System.out.println("Questions are added successfully....");
+		}
 		else
-			throw new InvalidException("In addQuestion(),Query is not inserted, May be some duplicates..Error!");
+			throw new QuizIdNotFoundException("Quiz is not created to add the questions");
+		}
+		
+		catch(SQLException|QuizIdNotFoundException e)
+		{
+			logger.warn(e.getMessage());
+		}
 	}
 
-	public void addAnswer() throws Exception {
+	public void addAnswer()  {
 		Answer answer = new Answer();
+		try {
 		Connection con = DBUtil.getConnection();
 		scanner.nextLine();
 		System.out.print("Enter quesNo:");
 		String quesNo = scanner.nextLine();
 		System.out.print("Enter option1:");
 		String option1 = scanner.nextLine();
-		;
 		System.out.print("Enter option2:");
 		String option2 = scanner.nextLine();
-		;
 		System.out.print("Enter option3:");
 		String option3 = scanner.nextLine();
-		;
 		System.out.print("Enter option4:");
 		String option4 = scanner.nextLine();
-		;
 		System.out.print("Enter crct answer:");
 		int crctAns = scanner.nextInt();
 
@@ -168,17 +214,25 @@ public class QuizDaoImp implements QuizDao{
 		pst.setString(5, option4);
 		pst.setInt(6, crctAns);
 		int bool = pst.executeUpdate();
-		con.close();
-		if (bool > 0)
+		
 			System.out.println("Added!! Move to next question...");
-		else
-			throw new InvalidException("In addAnswers(),Query is not inserted, May be some duplicates..Error!");
-	}
+			
+		}
+		catch(SQLException e)
+		{
+			logger.warn(e.getMessage());
+		}
+		
+		}
 
-	public void takeQuiz() throws Exception {
+	public void takeQuiz() {
+		try
+		{
 		Connection con = DBUtil.getConnection();
 		System.out.print("Enter your quizId to take quiz:");
 		String quizId = scanner.nextLine();
+		if(quizIdList.contains(quizId))
+		{
 		scanner.nextLine();
 		System.out.print("Enter your id:");
 		int rollNo = scanner.nextInt();
@@ -220,22 +274,37 @@ public class QuizDaoImp implements QuizDao{
 		pst1.setString(5, quizId);
 		pst1.setInt(6, score);
 		pst1.executeUpdate();
+		}
+		else
+		{
+			throw new QuizIdNotFoundException("Give correct quizId to take the quiz");
+		}
+		}
+		catch(SQLException|QuizIdNotFoundException e)
+		{
+			logger.warn(e.getMessage());
+		}
 	}
 
-	public void result() throws Exception {
+	public void result()  {
 		System.out.println("Results of all students");
-
+		try {
 		Connection con = DBUtil.getConnection();
-
+		System.out.println("Enter you quizID:");
+		String Id=scanner.nextLine();
 		String query1 = "select * from result";
-		PreparedStatement pst1 = con.prepareStatement(query1);
-		ResultSet resultSet = pst1.executeQuery(query1);
-		// System.out.println("studId"+" "+"studName"+" "+"subId"+" "+"subName"+"
-		// "+"quizId"+" "+"Score\n");
+		Statement st=con.createStatement();
+		ResultSet resultSet = st.executeQuery(query1);
+		System.out.println("studId"+" "+"studName"+" "+"subId"+" "+"subName"+" "+"quizId"+" "+"Score\n");
 		while (resultSet.next()) {
 			System.out.println(resultSet.getInt(1) + " " + resultSet.getString(2) + " " + resultSet.getInt(3) + " "
 					+ resultSet.getString(4) + " " + resultSet.getString(5) + " " + resultSet.getInt(6));
 		}
-		con.close();
+	
+	}
+		catch(SQLException e)
+		{
+			logger.warn(e.getMessage());
+		}
 	}
 }

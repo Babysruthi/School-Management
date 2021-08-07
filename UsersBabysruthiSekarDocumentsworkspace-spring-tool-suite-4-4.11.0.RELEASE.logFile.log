@@ -13,3 +13,155 @@
 2021-08-06 11:46:41 INFO  class:54 - In quizApplication -> Result
 2021-08-06 11:46:45 INFO  class:59 - In quizApplication -> Back to main
 2021-08-06 11:46:45 INFO  class:60 - In MainApplication -> 
+2021-08-06 14:16:58 INFO  class:41 - In MainApplication -> For StudentDetails
+2021-08-06 14:16:59 INFO  class:69 - In studentApplication -> ListOf Students
+2021-08-06 14:17:14 INFO  class:69 - In studentApplication -> ListOf Students
+2021-08-06 14:17:49 INFO  class:41 - In MainApplication -> For StudentDetails
+2021-08-06 14:17:50 INFO  class:69 - In studentApplication -> ListOf Students
+2021-08-06 14:17:57 INFO  class:81 - In studentApplication -> Back to main
+2021-08-06 14:17:59 INFO  class:49 - In MainApplication -> For SubjectDetails
+2021-08-06 14:18:02 INFO  class:59 - In subjectApplication -> List Subjects
+2021-08-06 14:18:09 INFO  class:71 - In subjectApplication -> Back to main
+2021-08-06 14:18:12 INFO  class:55 - In MainApplication -> For Quiz
+2021-08-06 14:18:14 INFO  class:54 - In quizApplication -> Result
+2021-08-06 14:18:17 INFO  class:59 - In quizApplication -> Back to main
+2021-08-06 14:18:17 INFO  class:61 - In MainApplication -> 
+2021-08-06 17:02:57 INFO  class:43 - In MainApplication -> For StudentDetails
+2021-08-06 17:03:12 INFO  class:28 - In studentApplication -> Add Students
+2021-08-06 17:05:30 INFO  class:43 - In MainApplication -> For StudentDetails
+2021-08-06 17:05:32 INFO  class:69 - In studentApplication -> ListOf Students
+2021-08-07 00:18:39 INFO  class:54 - In MainApplication -> For Quiz
+2021-08-07 00:18:39 INFO  class:60 - In MainApplication -> 
+2021-08-07 00:20:45 INFO  class:65 - Invalid user or pass..
+2021-08-07 00:21:43 INFO  class:54 - In MainApplication -> For Quiz
+2021-08-07 00:21:48 INFO  class:40 - In quizApplication -> List ofQuizes
+2021-08-07 00:22:16 INFO  class:40 - In quizApplication -> List ofQuizes
+2021-08-07 00:22:19 WARN  class:152 - You cant able to see the quizes of that subject
+2021-08-07 00:22:43 INFO  class:36 - In quizApplication -> DeleteQuiz
+2021-08-07 00:22:43 WARN  class:121 - QuizId is not Found..
+2021-08-07 00:24:20 INFO  class:54 - In MainApplication -> For Quiz
+2021-08-07 00:24:25 INFO  class:36 - In quizApplication -> DeleteQuiz
+2021-08-07 00:24:50 WARN  class:122 - QuizId is not Found..
+2021-08-07 00:24:55 INFO  class:61 - In quizApplication -> Back to main
+2021-08-07 00:24:55 INFO  class:60 - In MainApplication -> 
+2021-08-07 00:45:17 INFO  class:54 - In MainApplication -> For Quiz
+2021-08-07 00:45:22 INFO  class:40 - In quizApplication -> List ofQuizes
+2021-08-07 00:45:24 WARN  class:155 - You cant able to see the quizes of other subject
+2021-08-07 00:45:30 INFO  class:40 - In quizApplication -> List ofQuizes
+2021-08-07 00:45:50 INFO  class:44 - In quizApplication -> AddQuestion
+2021-08-07 00:45:50 WARN  class:186 - Quiz is not created to add the questions
+2021-08-07 00:47:18 INFO  class:54 - In MainApplication -> For Quiz
+2021-08-07 00:47:23 INFO  class:40 - In quizApplication -> List ofQuizes
+2021-08-07 00:47:29 INFO  class:44 - In quizApplication -> AddQuestion
+2021-08-07 00:47:32 WARN  class:187 - Quiz is not created to add the questions
+2021-08-07 00:47:37 INFO  class:52 - In quizApplication -> TakeQuiz
+2021-08-07 00:47:40 WARN  class:285 - Give correct quizId to take the quiz
+2021-08-07 00:47:46 INFO  class:56 - In quizApplication -> Result
+2021-08-07 00:47:49 INFO  class:61 - In quizApplication -> Back to main
+2021-08-07 00:47:49 INFO  class:60 - In MainApplication -> 
+2021-08-07 10:35:49 INFO  class:48 - In MainApplication -> For SubjectDetails
+2021-08-07 10:36:03 INFO  class:60 - In MainApplication -> 
+2021-08-07 10:37:58 INFO  class:48 - In MainApplication -> For SubjectDetails
+2021-08-07 10:38:05 INFO  class:57 - In subjectApplication -> List Subjects
+2021-08-07 10:38:14 INFO  class:31 - In subjectApplication -> Add Subjects
+2021-08-07 10:38:27 INFO  class:52 - Subject is added successfully
+2021-08-07 10:38:29 INFO  class:57 - In subjectApplication -> List Subjects
+2021-08-07 10:38:35 INFO  class:57 - In subjectApplication -> List Subjects
+2021-08-07 10:38:50 INFO  class:31 - In subjectApplication -> Add Subjects
+2021-08-07 10:39:00 WARN  class:59 - Duplicate entry '1' for key 'subject.PRIMARY'
+2021-08-07 10:41:59 INFO  class:69 - In subjectApplication -> Back to main
+2021-08-07 10:42:01 INFO  class:60 - In MainApplication -> 
+2021-08-07 10:45:31 INFO  class:48 - In MainApplication -> For SubjectDetails
+2021-08-07 10:45:33 INFO  class:57 - In subjectApplication -> List Subjects
+2021-08-07 10:45:59 INFO  class:69 - In subjectApplication -> Back to main
+2021-08-07 10:46:01 INFO  class:54 - In MainApplication -> For Quiz
+2021-08-07 10:47:17 INFO  class:61 - In quizApplication -> Back to main
+2021-08-07 10:47:17 INFO  class:60 - In MainApplication -> 
+2021-08-07 11:18:27 INFO  class:39 - In MainApplication -> For StudentDetails
+2021-08-07 11:18:31 INFO  class:28 - In studentApplication -> Add Students
+2021-08-07 11:18:42 WARN  class:58 - RollNo should not be negative and must be of 4 digits..
+2021-08-07 11:18:47 INFO  class:69 - In studentApplication -> ListOf Students
+2021-08-07 11:18:51 WARN  class:113 - Given class is not found 102
+2021-08-07 11:19:25 INFO  class:60 - In studentApplication -> Delete Student
+2021-08-07 11:19:29 INFO  class:83 - Student Id is not present
+2021-08-07 11:19:34 INFO  class:69 - In studentApplication -> ListOf Students
+2021-08-07 11:19:36 WARN  class:113 - Given class is not found 101
+2021-08-07 11:21:33 INFO  class:28 - In studentApplication -> Add Students
+2021-08-07 11:22:10 INFO  class:69 - In studentApplication -> ListOf Students
+2021-08-07 11:22:20 INFO  class:75 - In studentApplication -> Update Student
+2021-08-07 11:22:32 INFO  class:190 - Invalid RollNo
+2021-08-07 11:22:35 INFO  class:81 - In studentApplication -> Back to main
+2021-08-07 11:22:37 INFO  class:47 - In MainApplication -> For SubjectDetails
+2021-08-07 11:22:43 INFO  class:50 - In subjectApplication -> Delete Subject
+2021-08-07 11:23:38 INFO  class:69 - In subjectApplication -> Back to main
+2021-08-07 11:23:39 INFO  class:59 - In MainApplication -> 
+2021-08-07 11:23:56 INFO  class:46 - In MainApplication -> For SubjectDetails
+2021-08-07 11:24:00 INFO  class:57 - In subjectApplication -> List Subjects
+2021-08-07 11:24:04 INFO  class:50 - In subjectApplication -> Delete Subject
+2021-08-07 11:24:11 WARN  class:82 - Subject Id is not found
+2021-08-07 11:24:15 INFO  class:63 - In subjectApplication -> update Subjects
+2021-08-07 11:24:18 INFO  class:69 - In subjectApplication -> Back to main
+2021-08-07 11:24:20 INFO  class:52 - In MainApplication -> For Quiz
+2021-08-07 11:24:23 INFO  class:40 - In quizApplication -> List ofQuizes
+2021-08-07 11:24:29 INFO  class:36 - In quizApplication -> DeleteQuiz
+2021-08-07 11:24:32 WARN  class:125 - QuizId is not Found..
+2021-08-07 11:24:40 INFO  class:56 - In quizApplication -> Result
+2021-08-07 11:24:42 INFO  class:61 - In quizApplication -> Back to main
+2021-08-07 11:24:42 INFO  class:58 - In MainApplication -> 
+2021-08-07 11:26:01 INFO  class:38 - In MainApplication -> For StudentDetails
+2021-08-07 11:27:09 INFO  class:38 - In MainApplication -> For StudentDetails
+2021-08-07 11:27:10 WARN  class:87 - Enter valid choice (1-5)
+2021-08-07 11:28:23 INFO  class:81 - In studentApplication -> Back to main
+2021-08-07 11:28:24 INFO  class:58 - In MainApplication -> 
+2021-08-07 11:29:42 INFO  class:38 - In MainApplication -> For StudentDetails
+2021-08-07 11:29:44 INFO  class:69 - In studentApplication -> ListOf Students
+2021-08-07 11:29:47 WARN  class:115 - Given class is not found 101
+2021-08-07 11:31:13 INFO  class:38 - In MainApplication -> For StudentDetails
+2021-08-07 11:31:15 INFO  class:69 - In studentApplication -> ListOf Students
+2021-08-07 11:31:18 WARN  class:115 - Given class is not found 101
+2021-08-07 11:31:21 INFO  class:28 - In studentApplication -> Add Students
+2021-08-07 11:31:50 INFO  class:69 - In studentApplication -> ListOf Students
+2021-08-07 11:31:57 INFO  class:81 - In studentApplication -> Back to main
+2021-08-07 11:31:59 INFO  class:58 - In MainApplication -> 
+2021-08-07 11:32:23 INFO  class:38 - In MainApplication -> For StudentDetails
+2021-08-07 11:32:24 INFO  class:69 - In studentApplication -> ListOf Students
+2021-08-07 11:32:25 WARN  class:115 - Given class is not found 101
+2021-08-07 11:32:35 INFO  class:81 - In studentApplication -> Back to main
+2021-08-07 11:32:37 INFO  class:46 - In MainApplication -> For SubjectDetails
+2021-08-07 11:32:40 INFO  class:57 - In subjectApplication -> List Subjects
+2021-08-07 11:35:04 INFO  class:38 - In MainApplication -> For StudentDetails
+2021-08-07 11:35:05 INFO  class:69 - In studentApplication -> ListOf Students
+2021-08-07 11:36:15 INFO  class:38 - In MainApplication -> For StudentDetails
+2021-08-07 11:36:17 INFO  class:69 - In studentApplication -> ListOf Students
+2021-08-07 11:36:23 INFO  class:81 - In studentApplication -> Back to main
+2021-08-07 11:36:25 INFO  class:46 - In MainApplication -> For SubjectDetails
+2021-08-07 11:36:28 INFO  class:57 - In subjectApplication -> List Subjects
+2021-08-07 11:36:32 INFO  class:69 - In subjectApplication -> Back to main
+2021-08-07 11:36:34 INFO  class:52 - In MainApplication -> For Quiz
+2021-08-07 11:36:37 INFO  class:40 - In quizApplication -> List ofQuizes
+2021-08-07 11:36:39 WARN  class:155 - You cant able to see the quizes of other subject
+2021-08-07 11:36:44 INFO  class:40 - In quizApplication -> List ofQuizes
+2021-08-07 11:36:52 INFO  class:56 - In quizApplication -> Result
+2021-08-07 11:36:59 INFO  class:61 - In quizApplication -> Back to main
+2021-08-07 11:36:59 INFO  class:58 - In MainApplication -> 
+2021-08-07 11:38:55 INFO  class:52 - In MainApplication -> For Quiz
+2021-08-07 11:39:01 INFO  class:40 - In quizApplication -> List ofQuizes
+2021-08-07 11:39:09 INFO  class:56 - In quizApplication -> Result
+2021-08-07 11:39:09 WARN  class:308 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+2021-08-07 11:40:37 INFO  class:52 - In MainApplication -> For Quiz
+2021-08-07 11:40:39 INFO  class:56 - In quizApplication -> Result
+2021-08-07 11:40:44 WARN  class:309 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?' at line 1
+2021-08-07 11:42:52 INFO  class:52 - In MainApplication -> For Quiz
+2021-08-07 11:42:53 INFO  class:56 - In quizApplication -> Result
+2021-08-07 11:42:55 WARN  class:310 - Unknown column 'M01' in 'where clause'
+2021-08-07 11:45:05 INFO  class:52 - In MainApplication -> For Quiz
+2021-08-07 11:45:07 INFO  class:56 - In quizApplication -> Result
+2021-08-07 11:45:12 WARN  class:311 - Unknown column 'M01' in 'where clause'
+2021-08-07 11:45:20 INFO  class:40 - In quizApplication -> List ofQuizes
+2021-08-07 11:47:52 INFO  class:52 - In MainApplication -> For Quiz
+2021-08-07 11:47:54 INFO  class:56 - In quizApplication -> Result
+2021-08-07 11:47:57 WARN  class:310 - Unknown column 'M01' in 'where clause'
+2021-08-07 11:48:59 INFO  class:52 - In MainApplication -> For Quiz
+2021-08-07 11:49:00 INFO  class:56 - In quizApplication -> Result
+2021-08-07 11:55:49 INFO  class:61 - In quizApplication -> Back to main
+2021-08-07 11:55:49 INFO  class:58 - In MainApplication -> 

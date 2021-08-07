@@ -9,19 +9,19 @@ import com.revature.project.exception.InvalidException;
 public class StudentServiceImp implements StudentService {
 	StudentDao studentDaoImp = new StudentDaoImp();
 
-	public void addStudent(Student student) throws InvalidException, Exception {
+	public void addStudent(Student student) {
 		studentDaoImp.addStudent(student);
 	}
 
-	public void deleteStudent(Student student) throws InvalidException, Exception {
+	public void deleteStudent(Student student) {
 		studentDaoImp.deleteStudent(student);
 	}
 
-	public void retrieveStudent(Student student) throws InvalidException, Exception {
+	public void retrieveStudent(Student student) {
 		studentDaoImp.retrieveStudent(student);
 	}
 
-	public void updateStudent(Student student) throws InvalidException, Exception {
+	public void updateStudent(Student student) {
 		studentDaoImp.updateStudent(student);
 	}
 
