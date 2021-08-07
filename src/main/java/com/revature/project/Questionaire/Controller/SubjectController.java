@@ -7,14 +7,13 @@ import com.revature.project.exception.InvalidException;
 
 public class SubjectController {
 
-	SubjectService subjectService=new SubjectServiceImp();
-	
-	public void classNumList()
-	{
+	SubjectService subjectService = new SubjectServiceImp();
+
+	public void classNumList() {
 		subjectService.classNumList();
 	}
-	
-	public void addSubject(Subject subject)  {
+
+	public void addSubject(Subject subject) {
 		subjectService.addSubject(subject);
 	}
 
@@ -22,11 +21,11 @@ public class SubjectController {
 		subjectService.removeSubject();
 	}
 
-	public void listSubject()  {
+	public void listSubject() {
 		subjectService.listSubject();
 	}
 
-	public void updateSubject()  {
+	public void updateSubject() {
 		subjectService.updateSubject();
 	}
 }

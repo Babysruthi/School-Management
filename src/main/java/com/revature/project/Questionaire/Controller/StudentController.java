@@ -6,14 +6,14 @@ import com.revature.project.Questionaire.Service.StudentService;
 import com.revature.project.Questionaire.Service.StudentServiceImp;
 import com.revature.project.exception.InvalidException;
 
-public class StudentController  {
+public class StudentController {
 	StudentService studentService = new StudentServiceImp();
 
 	public void addStudent(Student student) {
 		studentService.addStudent(student);
 	}
 
-	public void deleteStudent(Student student)  {
+	public void deleteStudent(Student student) {
 		studentService.deleteStudent(student);
 	}
 
@@ -21,9 +21,8 @@ public class StudentController  {
 		studentService.retrieveStudent(student);
 	}
 
-	public void updateStudent(Student student)  {
+	public void updateStudent(Student student) {
 		studentService.updateStudent(student);
 	}
 
-	
 }

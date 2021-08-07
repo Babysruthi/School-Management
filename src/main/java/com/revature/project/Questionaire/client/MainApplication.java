@@ -15,21 +15,21 @@ public class MainApplication {
 
 	static Logger logger = Logger.getLogger("MainApplication.class");
 
-	public static void main(String[] args) throws InvalidChoiceException, InvalidStaffLoginException 
-	{
+	public static void main(String[] args) throws InvalidChoiceException, InvalidStaffLoginException {
 
 		Scanner scanner = new Scanner(System.in);
 		int subId = 0;
 		boolean bool = false;
 		System.out.println("welcome!!");
-		QuizController quizController=new QuizController();
+		QuizController quizController = new QuizController();
 		System.out.print("Enter teacher id:");
-		int teacherId = scanner.nextInt();		System.out.print("Enter teacher pass:");
+		int teacherId = scanner.nextInt();
+		System.out.print("Enter teacher pass:");
 		int teacherPass = scanner.nextInt();
 		subId = quizController.checkTeacher(teacherId, teacherPass);
-		
-		bool=true;
-	   
+
+		bool = true;
+
 		while (bool) {
 			System.out.println("\nTo perform CRUD operations for\n1 Students\n2 Subjects\n3 Quiz\n4 To Exit");
 			int teacherChoice = scanner.nextInt();

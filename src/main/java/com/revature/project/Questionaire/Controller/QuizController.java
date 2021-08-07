@@ -17,27 +17,27 @@ import com.revature.project.exception.InvalidStaffLoginException;
 public class QuizController {
 
 	static Logger logger = Logger.getLogger("Quizcontroller.class");
-	QuizService quizService=new QuizServiceImp();
-	
-	public int checkTeacher(int teacherId, int teacherPass)throws InvalidStaffLoginException{
-		
-		int subId=0;
+	QuizService quizService = new QuizServiceImp();
+
+	public int checkTeacher(int teacherId, int teacherPass) throws InvalidStaffLoginException {
+
+		int subId = 0;
 		subId = quizService.checkTeacher(teacherId, teacherPass);
-		
+
 		return subId;
 	}
 
-	public void addQuiz()  {
+	public void addQuiz() {
 		quizService.addQuiz();
 	}
 
-	public void deleteQuiz(){
+	public void deleteQuiz() {
 		quizService.deleteQuiz();
 	}
 
-	public List<String> listQuiz()  {
-		List<String>quizId=new ArrayList<String>();
-		quizId=quizService.listQuiz();
+	public List<String> listQuiz() {
+		List<String> quizId = new ArrayList<String>();
+		quizId = quizService.listQuiz();
 		return quizId;
 	}
 
@@ -45,11 +45,11 @@ public class QuizController {
 		quizService.addQuestion();
 	}
 
-	public void addAnswer()  {
+	public void addAnswer() {
 		quizService.addAnswer();
 	}
 
-	public void takeQuiz()  {
+	public void takeQuiz() {
 		quizService.takeQuiz();
 	}
 

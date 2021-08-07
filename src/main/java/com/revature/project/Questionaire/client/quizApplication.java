@@ -14,9 +14,8 @@ public class quizApplication {
 
 	static Logger logger = Logger.getLogger("quizApplication.class");
 
-	
-	public void quiz()  {
-		List<String>quizId=new ArrayList<String>();
+	public void quiz() {
+		List<String> quizId = new ArrayList<String>();
 		System.out.println("------QUIZ-----");
 		Scanner scanner = new Scanner(System.in);
 		QuizController quizcontroller = new QuizController();
@@ -38,7 +37,7 @@ public class quizApplication {
 				break;
 			case 3:
 				logger.info("In quizApplication -> List ofQuizes");
-				quizId=quizcontroller.listQuiz();
+				quizId = quizcontroller.listQuiz();
 				break;
 			case 4:
 				logger.info("In quizApplication -> AddQuestion");
@@ -62,11 +61,11 @@ public class quizApplication {
 				System.out.println("Back to Main Application!!");
 				s = false;
 				break;
-			
+
 			default:
 				logger.warn("Enter valid choice (1-8)");
 				break;
-		
+
 			}
 
 		}

@@ -25,5 +25,4 @@ public class StudentServiceImp implements StudentService {
 		studentDaoImp.updateStudent(student);
 	}
 
-	
 }

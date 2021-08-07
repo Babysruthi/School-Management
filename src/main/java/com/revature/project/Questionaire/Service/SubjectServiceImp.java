@@ -7,17 +7,15 @@ import com.revature.project.Questionaire.Dao.SubjectDao;
 import com.revature.project.Questionaire.Dao.SubjectDaoImp;
 import com.revature.project.exception.InvalidException;
 
+public class SubjectServiceImp implements SubjectService {
 
-public class SubjectServiceImp implements SubjectService{
-	
 	SubjectDao subjectDaoImp = new SubjectDaoImp();
-	
-	public void classNumList()
-	{
+
+	public void classNumList() {
 		subjectDaoImp.classNumList();
 	}
-	
-	public void addSubject(Subject subject)  {
+
+	public void addSubject(Subject subject) {
 		subjectDaoImp.addSubject(subject);
 	}
 
@@ -25,11 +23,11 @@ public class SubjectServiceImp implements SubjectService{
 		subjectDaoImp.removeSubject();
 	}
 
-	public void listSubject()  {
+	public void listSubject() {
 		subjectDaoImp.listSubject();
 	}
 
-	public void updateSubject()  {
+	public void updateSubject() {
 		subjectDaoImp.updateSubject();
 	}
 

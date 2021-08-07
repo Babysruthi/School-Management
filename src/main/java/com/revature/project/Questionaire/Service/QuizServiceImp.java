@@ -13,20 +13,18 @@ import com.revature.project.exception.InvalidChoiceException;
 import com.revature.project.exception.InvalidException;
 import com.revature.project.exception.InvalidStaffLoginException;
 
-public class QuizServiceImp implements QuizService{
+public class QuizServiceImp implements QuizService {
 
 	QuizDao quizDaoImp = new QuizDaoImp();
-	
-	public int checkTeacher(int teacherId, int teacherPass)throws InvalidStaffLoginException {
-		int subId=0;
-		
+
+	public int checkTeacher(int teacherId, int teacherPass) throws InvalidStaffLoginException {
+		int subId = 0;
+
 		subId = quizDaoImp.checkTeacher(teacherId, teacherPass);
-		
-		
+
 		return subId;
 	}
 
-	
 	public void addQuiz() {
 		quizDaoImp.addQuiz();
 	}
@@ -36,10 +34,10 @@ public class QuizServiceImp implements QuizService{
 	}
 
 	public List<String> listQuiz() {
-		List<String>quizId=new ArrayList<String>();
-		quizId=quizDaoImp.listQuiz();
+		List<String> quizId = new ArrayList<String>();
+		quizId = quizDaoImp.listQuiz();
 		return quizId;
-		
+
 	}
 
 	public void addQuestion() {
@@ -50,7 +48,7 @@ public class QuizServiceImp implements QuizService{
 		quizDaoImp.addAnswer();
 	}
 
-	public void takeQuiz()  {
+	public void takeQuiz() {
 		quizDaoImp.takeQuiz();
 	}
 

@@ -36,7 +36,7 @@ public class SubjectApplication {
 				scanner.nextLine();
 				System.out.println("Enter subject");
 				String subName = scanner.nextLine();
-			
+
 				subject.setSubId(subjectId);
 				subject.setSubName(subName);
 				subject.setClassNo(classNo);
@@ -48,7 +48,7 @@ public class SubjectApplication {
 
 			case 2: {
 				logger.info("In subjectApplication -> Delete Subject");
-			
+
 				scontroller.removeSubject();
 				break;
 			}
@@ -71,7 +71,7 @@ public class SubjectApplication {
 				s = false;
 				break;
 			}
-			default:{
+			default: {
 				logger.warn("Enter valid choice (1-5)");
 				break;
 			}

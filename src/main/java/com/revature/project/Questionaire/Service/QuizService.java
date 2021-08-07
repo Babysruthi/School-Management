@@ -16,13 +16,13 @@ public interface QuizService {
 
 	public void deleteQuiz();
 
-	public List<String> listQuiz() ;
+	public List<String> listQuiz();
 
-	public void addQuestion() ;
+	public void addQuestion();
 
-	public void addAnswer() ;
+	public void addAnswer();
 
-	public void takeQuiz() ;
+	public void takeQuiz();
 
-	public void result() ;
+	public void result();
 }

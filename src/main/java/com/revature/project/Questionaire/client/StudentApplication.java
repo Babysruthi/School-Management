@@ -52,7 +52,6 @@ public class StudentApplication {
 				student.setClassNo(classNo);
 				scontroller.addStudent(student);
 
-				
 				break;
 			}
 
@@ -83,7 +82,7 @@ public class StudentApplication {
 				s = false;
 				break;
 			}
-			default:{
+			default: {
 				logger.warn("Enter valid choice (1-5)");
 				break;
 			}
