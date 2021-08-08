@@ -21,7 +21,7 @@ public class StudentApplication {
 		boolean s = true;
 		while (s) {
 			System.out
-					.println("\n1 Add Student\n2 Delete Student\n3 ListOf Students\n4 Update student\n5 Back to main");
+					.println("\n1 Add Student\n2 ListOf Students\n3 Delete Student\n4 Update student\n5 Back to main");
 			int teacherChoice = scanner.nextInt();
 			switch (teacherChoice) {
 			case 1: {
@@ -54,19 +54,16 @@ public class StudentApplication {
 
 				break;
 			}
-
+			
 			case 2: {
-				logger.info("In studentApplication -> Delete Student");
-				System.out.println("Enter the student's id to delete:");
-				int studentId = scanner.nextInt();
-				student.setRollNo(studentId);
-				scontroller.deleteStudent(student);
+				logger.info("In studentApplication -> ListOf Students");
+				scontroller.retrieveStudent(student);
 				break;
 			}
 
 			case 3: {
-				logger.info("In studentApplication -> ListOf Students");
-				scontroller.retrieveStudent(student);
+				logger.info("In studentApplication -> Delete Student");
+				scontroller.deleteStudent();
 				break;
 			}
 

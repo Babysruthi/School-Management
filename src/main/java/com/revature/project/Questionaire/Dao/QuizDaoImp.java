@@ -22,13 +22,15 @@ import com.revature.project.exception.QuizIdNotFoundException;
 import com.revature.project.exception.InvalidStaffLoginException;
 
 public class QuizDaoImp implements QuizDao {
-	static Logger logger = Logger.getLogger("QuizDaoImp.class");
+	Logger logger = Logger.getLogger("QuizDaoImp.class");
 	Scanner scanner = new Scanner(System.in);
 	static int subId = 0;
 	static String sub = "";
 	List<String> quizIdList = new ArrayList<String>();
 
 	public int checkTeacher(int teacherId, int teacherPass) throws InvalidStaffLoginException {
+		
+		logger.info("In QuizDaoImp->checkteacher");
 		try (Connection con = DBUtil.getConnection();) {
 			Statement st = con.createStatement();
 			String query = ("select * from teacher");
@@ -51,7 +53,7 @@ public class QuizDaoImp implements QuizDao {
 				while (resultSet.next()) {
 					sub = resultSet.getString(1);
 				}
-				System.out.println(sub);
+				System.out.println("\nHandling subject:"+sub);
 			} else
 				throw new InvalidStaffLoginException("Invalid user or pass..");
 		} catch (SQLException e) {
@@ -63,11 +65,13 @@ public class QuizDaoImp implements QuizDao {
 
 	public void addQuiz() {
 		Quiz quiz = new Quiz();
+		logger.info("In QuizDaoImp->addQuiz");
 		try {
 			Connection con = DBUtil.getConnection();
 			System.out.print("Enter subId:");
 			int sId = scanner.nextInt();
 			if (sId == subId) {
+				scanner.nextLine();
 				System.out.print("Enter quizId:");
 				String quizId = scanner.nextLine();
 				scanner.nextLine();
@@ -85,7 +89,7 @@ public class QuizDaoImp implements QuizDao {
 				pst.executeUpdate();
 				System.out.println("You are ready to add questions!!!....");
 			} else {
-				throw new InvalidException("You are not able to create quiz for this subject");
+				throw new InvalidException("You are not able to create quiz for this subjectId"+sId);
 			}
 		}
 
@@ -95,6 +99,7 @@ public class QuizDaoImp implements QuizDao {
 	}
 
 	public void deleteQuiz() {
+		logger.info("In QuizDaoImp->deleteQuiz");
 		try {
 			Connection con = DBUtil.getConnection();
 			scanner.nextLine();
@@ -114,6 +119,7 @@ public class QuizDaoImp implements QuizDao {
 	}
 
 	public List<String> listQuiz() {
+		logger.info("In QuizDaoImp->listQuiz");
 		Quiz quiz = new Quiz();
 		List<String> quizId = new ArrayList<String>();
 		try {
@@ -127,7 +133,7 @@ public class QuizDaoImp implements QuizDao {
 				PreparedStatement pst = con.prepareStatement(query);
 				ResultSet resultSet = pst.executeQuery(query);
 				while (resultSet.next()) {
-					System.out.println(resultSet.getString(1));
+					System.out.println(resultSet.getString(1)+" "+resultSet.getString(2));
 					quizIdList.add(resultSet.getString(1));
 				}
 			} else {
@@ -140,6 +146,7 @@ public class QuizDaoImp implements QuizDao {
 	}
 
 	public void addQuestion() {
+		logger.info("In QuizDaoImp->addQuestion");
 		Question question = new Question();
 		try {
 			Connection con = DBUtil.getConnection();
@@ -168,6 +175,7 @@ public class QuizDaoImp implements QuizDao {
 	}
 
 	public void addAnswer() {
+		logger.info("In QuizDaoImp->addAnswer");
 		Answer answer = new Answer();
 		try {
 			Connection con = DBUtil.getConnection();
@@ -203,6 +211,7 @@ public class QuizDaoImp implements QuizDao {
 	}
 
 	public void takeQuiz() {
+		logger.info("In QuizDaoImp->takeQuiz");
 		try {
 			Connection con = DBUtil.getConnection();
 			scanner.nextLine();
@@ -264,17 +273,20 @@ public class QuizDaoImp implements QuizDao {
 	}
 
 	public void result() {
+		logger.info("In QuizDaoImp->Result");
 		System.out.println("Results of all students");
 		try {
 			Connection con = DBUtil.getConnection();
 			System.out.println("Enter you quizID:");
 			String Id = scanner.nextLine();
-			scanner.nextLine();
+			
+
+			
+			PreparedStatement pst = con.prepareStatement("select * from result where quizId=?");
+			pst.setString(1, Id);
+			ResultSet resultSet=pst.executeQuery();
 			
 			
-			String query1 = " select r.* from result r join quiz q on r.subId="+subId;
-			Statement st = con.createStatement();
-			ResultSet resultSet = st.executeQuery(query1);
 			System.out.println(
 					"studId" + " " + "studName" + " " + "subId" + " " + "subName" + " " + "quizId" + " " + "Score\n");
 			while (resultSet.next()) {

@@ -7,7 +7,7 @@ import com.revature.project.exception.InvalidException;
 public interface StudentDao {
 	public void addStudent(Student student);
 
-	public void deleteStudent(Student student);
+	public void deleteStudent();
 
 	public void retrieveStudent(Student student);
 

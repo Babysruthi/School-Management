@@ -12,5 +12,5 @@ public interface SubjectDao {
 
 	public void listSubject();
 
-	public void updateSubject();
+	
 }

@@ -13,5 +13,5 @@ public interface SubjectService {
 
 	public void listSubject();
 
-	public void updateSubject();
+	
 }

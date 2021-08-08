@@ -34,13 +34,13 @@ public class StudentDaoImp implements StudentDao {
 	Logger logger = Logger.getLogger("StudentDaoImp.class");
 
 	public void addStudent(Student student) {
-
+		logger.info("In StudentDaoImp->addStudent");
 		try (Connection con = DBUtil.getConnection();) {
 			PreparedStatement pst = con.prepareStatement("insert into student values(?,?,?,?,?,?)");
 
 			if ((student.getRollNo() >= 1000 && student.getRollNo() <= 9999) && student.getRollNo() > 0) {
 				pst.setInt(1, student.getRollNo());
-				studentIdList.add(student.getClassNo());
+				
 				pst.setString(2, student.getName());
 				pst.setString(3, student.getDob());
 				pst.setString(4, student.getStandard());
@@ -59,11 +59,16 @@ public class StudentDaoImp implements StudentDao {
 
 	}
 
-	public void deleteStudent(Student student) {
+	public void deleteStudent() {
+		logger.info("In StudentDaoImp->deleteStudent");
+		System.out.print("Enter student's id to delete:");
+		int rollNo=scanner.nextInt();
+		
 		try (Connection con = DBUtil.getConnection();) {
-			if (studentIdList.contains(student.getRollNo())) {
+			if (rollNo>=1000&&rollNo<=9999&&studentIdList.contains(rollNo)) {
+
 				PreparedStatement pst = con.prepareStatement("delete from student where id=?");
-				pst.setInt(1, student.getRollNo());
+				pst.setInt(1, rollNo);
 				pst.executeUpdate();
 				con.close();
 				System.out.println("Student removed....");
@@ -78,6 +83,7 @@ public class StudentDaoImp implements StudentDao {
 	}
 
 	public void retrieveStudent(Student student) {
+		logger.info("In StudentDaoImp->listStudent");
 		try (Connection con = DBUtil.getConnection();) {
 
 			System.out.println("List of students are ....");
@@ -93,6 +99,7 @@ public class StudentDaoImp implements StudentDao {
 			while (resultSet.next()) {
 				System.out.println(resultSet.getInt(1) + " " + resultSet.getString(2) + " " + resultSet.getString(3)
 						+ " " + resultSet.getString(4) + " " + resultSet.getString(5));
+				studentIdList.add(resultSet.getInt(1));
 			}
 		}
 
@@ -102,13 +109,14 @@ public class StudentDaoImp implements StudentDao {
 	}
 
 	public void updateStudent(Student student) {
+		logger.info("In StudentDaoImp->updateStudent");
 		try (Connection con = DBUtil.getConnection();) {
 
 			System.out.println("\nEnter the attribute to update \n1 StudentName\n2 DOB\n3 Standard\n4 Address");
 			int teacherChoice = scanner.nextInt();
 			System.out.println("Enter the student's id to update:");
 			int id = scanner.nextInt();
-			if (studentIdList.contains(id)) {
+			if(studentIdList.contains(id)) {
 				if (teacherChoice == 1) {
 					System.out.println("Enter new name to update:");
 					scanner.nextLine();
@@ -165,8 +173,9 @@ public class StudentDaoImp implements StudentDao {
 						System.out.println("Address is updated");
 					else
 						System.out.println("Invalid user id!!");
-				}
-			} else
+				
+			} 
+			}else
 				throw new InvalidRollNoException("Invalid RollNo");
 		} catch (SQLException | InvalidRollNoException e) {
 			logger.info(e.getMessage());

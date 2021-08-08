@@ -23,18 +23,17 @@ public class SubjectApplication {
 		Subject subject = new Subject();
 		boolean s = true;
 		while (s) {
-			System.out.println(
-					"\n1 Add Subjects\n2 Remove Subjects\n3 ListOf Subjects\n4 Update Subject\n5 Back to main");
+			System.out.println("\n1 Add Subjects\n2 ListOf Subjects\n3 Remove Subject \n4 Back to main");
 			int teacherChoice = scanner.nextInt();
 			switch (teacherChoice) {
 			case 1: {
 				logger.info("In subjectApplication -> Add Subjects");
-				System.out.println("Enter id:");
+				System.out.print("Enter id:");
 				int subjectId = scanner.nextInt();
-				System.out.println("Enter classNo:");
+				System.out.print("Enter classNo:");
 				int classNo = scanner.nextInt();
 				scanner.nextLine();
-				System.out.println("Enter subject");
+				System.out.print("Enter subject:");
 				String subName = scanner.nextLine();
 
 				subject.setSubId(subjectId);
@@ -46,32 +45,25 @@ public class SubjectApplication {
 			}
 
 			case 2: {
+				logger.info("In subjectApplication -> List Subjects");
+				scontroller.listSubject();
+				break;
+			}
+			case 3: {
 				logger.info("In subjectApplication -> Delete Subject");
 
 				scontroller.removeSubject();
 				break;
 			}
 
-			case 3: {
-				logger.info("In subjectApplication -> List Subjects");
-				scontroller.listSubject();
-				break;
-			}
-
 			case 4: {
-				logger.info("In subjectApplication -> update Subjects");
-				scontroller.updateSubject();
-				break;
-			}
-
-			case 5: {
 				logger.info("In subjectApplication -> Back to main");
 				System.out.println("Back to Main Application!!");
 				s = false;
 				break;
 			}
 			default: {
-				logger.warn("Enter valid choice (1-5)");
+				logger.warn("Enter valid choice (1-4)");
 				break;
 			}
 			}

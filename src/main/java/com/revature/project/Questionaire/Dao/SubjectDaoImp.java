@@ -25,6 +25,7 @@ public class SubjectDaoImp implements SubjectDao {
 	List<Integer> classNoList = new ArrayList<Integer>();
 
 	public void classNumList() {
+		logger.info("In SubjectDaoImp->classNumList");
 		try (Connection con = DBUtil.getConnection();) {
 			PreparedStatement pst = con.prepareStatement("select classNo from class");
 			ResultSet resultSet = pst.executeQuery();
@@ -37,6 +38,7 @@ public class SubjectDaoImp implements SubjectDao {
 	}
 
 	public void addSubject(Subject subject) {
+		logger.info("In SubjectDaoImp->addSubject");
 		try (Connection con = DBUtil.getConnection();) {
 			PreparedStatement pst = con.prepareStatement("insert into subject values(?,?,?)");
 			pst.setInt(1, subject.getSubId());
@@ -44,17 +46,6 @@ public class SubjectDaoImp implements SubjectDao {
 		   pst.setInt(3, subject.getClassNo());
 			int result = pst.executeUpdate();
 			if (result > 0) {
-				subIdList.add(subject.getSubId());
-				
-//				SubjectClass subjectClass=new SubjectClass();
-//					System.out.print("Enter classNo");
-//					int classNo=scanner.nextInt();
-//					PreparedStatement ps = con.prepareStatement("insert into subject_class values(?,?)");
-//					ps.setInt(1,subject.getSubId() );
-//					ps.setInt(2,classNo);
-//					
-//					ps.execute();
-				
 				logger.info("Subject is added successfully");
 				
 				
@@ -68,6 +59,7 @@ public class SubjectDaoImp implements SubjectDao {
 	}
 
 	public void removeSubject() {
+		logger.info("In SubjectDaoImp->removeSubject");
 		try (Connection con = DBUtil.getConnection();) {
 			System.out.println("Enter subId to remove the subject");
 			int subId = scanner.nextInt();
@@ -88,16 +80,15 @@ public class SubjectDaoImp implements SubjectDao {
 	public void listSubject() {
 
 		try (Connection con = DBUtil.getConnection();) {
+			logger.info("In SubjectDaoImp->listSubject");
 
-//		System.out.print("Enter classNo whose subjects are needed:");
-//		int classNo = scanner.nextInt();
-//		if(classNoList.contains(classNo))
-//		{
-			String query = "select name from subject";
+			String query = "select id,name from subject";
 			PreparedStatement pst = con.prepareStatement(query);
 			ResultSet resultSet = pst.executeQuery(query);
 			while (resultSet.next()) {
-				System.out.println(resultSet.getString(1));
+				System.out.println(resultSet.getInt(1)+" "+resultSet.getString(2));
+				subIdList.add(resultSet.getInt(1));
+				
 			}
 		}
 
@@ -107,9 +98,6 @@ public class SubjectDaoImp implements SubjectDao {
 
 	}
 
-	public void updateSubject() {
-		Subject subject = new Subject();
-
-	}
+	
 
 }

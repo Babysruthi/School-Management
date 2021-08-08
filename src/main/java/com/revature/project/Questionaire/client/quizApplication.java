@@ -24,7 +24,7 @@ public class quizApplication {
 		boolean s = true;
 		while (s) {
 			System.out.println(
-					"\n1 Add Quiz\n2 Delete Quiz\n3 List Quiz for your subject\n4 Add Question\n5 Add Answer\n6 To takeQuiz\n7 Result\n8 Back to main");
+					"\n1 Add Quiz\n2 List Quiz\n3 Delete Quiz for your subject\n4 Add Question\n5 Add Answer\n6 To takeQuiz\n7 Result\n8 Back to main");
 			int teacherChoice = scanner.nextInt();
 			switch (teacherChoice) {
 			case 1:
@@ -32,12 +32,12 @@ public class quizApplication {
 				quizcontroller.addQuiz();
 				break;
 			case 2:
-				logger.info("In quizApplication -> DeleteQuiz");
-				quizcontroller.deleteQuiz();
-				break;
-			case 3:
 				logger.info("In quizApplication -> List ofQuizes");
 				quizId = quizcontroller.listQuiz();
+				break;
+			case 3:
+				logger.info("In quizApplication -> DeleteQuiz");
+				quizcontroller.deleteQuiz();
 				break;
 			case 4:
 				logger.info("In quizApplication -> AddQuestion");
